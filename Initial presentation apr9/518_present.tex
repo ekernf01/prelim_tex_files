@@ -1,0 +1,203 @@
+\documentclass[12pt,a4paper,t,xcolor=dvipsnames,slidestop,compress,mathserif]{beamer}
+\usepackage{amsmath,amssymb,graphicx,color,multicol,amsfonts,algorithmic,url,stmaryrd,epsf}
+\usepackage{graphicx, algorithm}
+
+\include{macrofile2a}
+
+%\usepackage{beamerthemesplit}
+
+\setlength{\columnsep}{1pt}
+
+
+\newcommand{\A}{A}%{\mathbb{A}}
+\newcommand{\Mff}{M_{ff}}
+\newcommand{\Mffinv}{M_{ff}^{-1}}
+\newcommand{\Aff}{A_{ff}}
+\newcommand{\Affinv}{A_{ff}^{-1}}
+\newcommand{\Aschur}{\hat{A}_{cc}}
+\newcommand{\Aschurinv}{\hat{A}_{cc}^{-1}}
+\newcommand{\Afc}{A_{fc}}
+\newcommand{\Acf}{A_{cf}}
+\newcommand{\Acc}{A_{cc}}
+\newcommand{\half}{\frac{1}{2}}
+\DeclareMathOperator*{\argmin}{argmin}
+\renewcommand{\H}[1]{{#1}^\star}
+
+% Beamer Commands
+\setbeamertemplate{navigation symbols}{}
+%\setbeamertemplate{footline}
+%{%
+%\hspace*{0.55\linewidth}\insertshorttitle - p.\insertframenumber
+%}
+%\setbeamertemplate{footnote}
+
+%{%\insertfootnotetext}
+\setbeamercolor{footnote mark}{fg=white}
+\setbeamertemplate{frametitle}[default][center]
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}[triangle]
+\setbeamercolor{itemize subitem}{fg=Plum}
+\setbeamerfont{itemize subitem}{size=\normalsize}
+\setbeamercolor{alerted text}{fg=Magenta}
+\setbeamerfont{institute}{size=\normalsize}
+\setbeamerfont{list label}{series=\bfseries}
+\usefonttheme[onlylarge]{structurebold} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% include packages
+
+\usetheme{Madrid}
+%% For \mathscr
+\usepackage[mathscr]{eucal}
+
+\usepackage{amssymb}
+
+%% For \boldsymbol
+\usepackage{amsbsy}
+
+%% For \bm (bold math)
+\usepackage{bm}
+
+%% For special lists like inparaenum, compactenum, compactitem
+\usepackage{paralist}
+
+%% For xspace (intelligent spacing at the end of a macro)
+\usepackage{xspace}
+
+\usepackage{centernot}
+
+
+%%%%%%%%%%%%%%
+%colors
+%%%%%%%%%%%%
+\newcommand{\red}[1]{{\color{red}#1}}
+\newcommand{\green}[1]{{\color{green}#1}}
+\newcommand{\yellow}[1]{{\color{yellow}#1}}
+\newcommand{\blue}[1]{{\color{blue}#1}}
+
+
+% Title Page Stuff
+% Title Page Stuff
+\title[Likelihood-free MCMC]{Prelim topic: Likelihood-free MCMC}
+\author[Eric Kernfeld]{ {Eric Kernfeld}\inst{1}}
+\institute[University of Washington]
+{ \inst{1}%
+University of Washington Department of Statistics}
+\date{}
+
+
+\begin{document}
+
+% Title Page
+% - Begin Slide -----
+\maketitle
+
+%\begin{frame}
+%\frame{\tableofcontents}
+% Collaborators/support
+% - Begin Slide -----
+%\section[Notation]{Background and Notations}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{Outline}
+%\tableofcontents
+%\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Paper}
+Darren Wilkinson's ``Parameter inference for stochastic kinetic models of bacterial gene regulation,'' a book chapter in \cite{Bernardo2012}.
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Likelihood Free MCMC}
+
+Cast of Characters 
+\begin{itemize}
+\item $r_j$ is a menu item in a restaurant.
+\item $x_t$ is the amount of money in the cash register $t$. 
+\item $\mathcal{D}_t$ incomplete observation of $x_t$ with error.
+\item $c$ is the popularity of menu items.
+\item $\tau$ governs measurement error.
+\item $\theta$ is $\tau$ and $c$ together.
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Likelihood Free MCMC}
+
+To produce a chain of samples from $P(\theta|D)$, using a proposal $q(\theta^*|\theta)$, accept with probability $p_{rej}(\theta^*|\theta)\equiv\min \{1, A\}$ if $$A=\frac{q(\theta,x|\theta^*,x^*)}{q(\theta^*,x^*|\theta,x)} \times \frac{P(\theta^*,x^*|D)}{P(\theta,x|D)}
+$$
+%.$$ or equivalently$$A{q(\theta^*|\theta)}{P(\theta|D)}={q(\theta|\theta^*)}  {P(\theta^*|D)}.$$ 
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Likelihood Free MCMC}
+
+Cast of Characters (\red{things DW can't evaluate are in red})
+\begin{itemize}
+\item ${P(\theta)}$
+\item \red{${P(x|\theta)}$}
+\item ${P(\mathcal{D}|x, \theta)}$
+\item \red{${P(x, \theta|\mathcal{D})}$} 
+\end{itemize}
+
+$$A=\frac{q(\theta,x|\theta^*,x^*)}{q(\theta^*,x^*|\theta,x)} \times \frac{P(\theta^*,x^*|D)}{P(\theta,x|D)}.$$ 
+
+Quote: ``Conditional on discrete-time observations, the Markov process breaks up into a collection of independent bridge processes that appear not to be analytically tractable.''
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Likelihood Free MCMC}
+
+\begin{align*}
+&\frac{q(\theta^*, x^*|\theta, x)}{q(\theta, x|\theta^*, x^*)}
+\times 
+\red{\frac{P(x| \theta)}{P(x^*| \theta^*)}}
+\times 
+\frac{ P( \theta)}{ P( \theta^*)}
+\times 
+\frac{P(\mathcal{D}|x, \theta)}{P(\mathcal{D}|x^*, \theta^*)}\\
+&=\frac{f(\theta^*|\theta)}{f(\theta|\theta^*)}
+\times 
+\red{\frac{P(x^*| \theta^*)}{P(x| \theta)} }
+\times 
+\red{\frac{P(x| \theta)}{P(x^*| \theta^*)} }
+\times 
+\frac{ P( \theta)}{ P( \theta^*)}
+\times 
+\frac{P(\mathcal{D}|x, \theta)}{P(\mathcal{D}|x^*, \theta^*)}\\
+&=\frac{f(\theta^*|\theta)}{f(\theta|\theta^*)}
+\times 
+\frac{ P( \theta)}{ P( \theta^*)}
+\times 
+\frac{P(\mathcal{D}|x, \theta)}{P(\mathcal{D}|x^*, \theta^*)}.
+\end{align*}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{}
+%
+%\centering 
+%	%\only<1>{\vspace*{0cm}\hspace*{0cm}\includegraphics[scale=.2]{blah.eps}}\\
+%%\footnote{Graphic: blah.com}
+%
+%\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Questions?}
+Wilkinson's paper is a chapter from this book:
+\bibliographystyle{splncs}
+\bibliography{prelim_biblio}
+
+
+\begin{center}
+
+ %\includegraphics[ trim={0cm 0cm 0 0},clip, width = .75\textwidth]{nice_things.jpeg}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

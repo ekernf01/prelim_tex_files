@@ -1,0 +1,21 @@
+\begin{thebibliography}{1}
+
+\bibitem{Bernardo2012}
+Bernardo, J.M., Bayarri, M.J., Berger, J.O., Dawid, A.P., Heckerman, D., Smith,
+  A.F.M., West, M.:
+\newblock {Bayesian statistics 9 ninth Valencia international meeting on
+  Bayesian statistics, Benidorm, Spain, 03-08.06.2010}.
+\newblock Oxford U.P., Oxford (2012)
+
+\bibitem{Boys2008}
+Boys, R.J., Wilkinson, D.J., Kirkwood, T.B.:
+\newblock Bayesian inference for a discretely observed stochastic kinetic
+  model.
+\newblock Statistics and Computing \textbf{18}(2) (June 2008)  125--135
+
+\bibitem{gillespie_CLE_2000}
+Gillespie, D.T.:
+\newblock The chemical langevin equation.
+\newblock The Journal of Chemical Physics \textbf{113}(1) (2000)  297--306
+
+\end{thebibliography}

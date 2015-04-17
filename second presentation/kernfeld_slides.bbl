@@ -1,0 +1,20 @@
+\begin{thebibliography}{1}
+
+\bibitem{Bernardo2012}
+Bernardo, J.M., Bayarri, M.J., Berger, J.O., Dawid, A.P., Heckerman, D., Smith,
+  A.F.M., West, M.:
+\newblock Ninth Valencia international meeting on Bayesian statistics,
+  Benidorm, Spain, 03-08.06.2010.
+\newblock Oxford U.P., Oxford (2012)
+
+\bibitem{SMC_Doucet_Freitas_Gordon}
+Doucet, A., de~Freitas, N., Gordon, N.
+\newblock Statistics for Engineering and Information Science. In: An
+  Introduction to Sequential Monte Carlo Methods. Springer (2001)  3--14
+
+\bibitem{FinkeSMCslides}
+Finke, A.:
+\newblock Introduction to sequential monte carlo and particle mcmc methods
+  (July 2013)
+
+\end{thebibliography}

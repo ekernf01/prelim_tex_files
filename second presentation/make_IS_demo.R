@@ -1,0 +1,11 @@
+setwd('~/Dropbox/518/eric_writing/second presentation/')
+png('IS_plot.png')
+mygrid <- seq(-6, 10, by=0.1)
+plot(mygrid, dnorm(mygrid, mean=-2.5), type='l', 
+     col=4, xlab='x', ylab='density (or function value)')
+text(labels='Q', x=-5, y=0.3)
+lines(mygrid, dnorm(mygrid, mean=2.5), col=2)
+text(labels='P', x=0, y=0.3)
+lines(mygrid, dnorm(mygrid, mean=7.5), col=3)
+text(labels='g', x=5, y=0.3)
+dev.off()
