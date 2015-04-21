@@ -62,7 +62,7 @@
 \newcommand\MEK[1]{\textcolor{red}{MEK: #1}}
 \newcommand\EMK[1]{\textcolor{purple}{EMK: #1}}
 \newcommand\SA[1]{\textcolor{blue}{SA: #1}}
-
+\newcommand\red[1]{\textcolor{red}{#1}}
 \begin{document}
 
 
@@ -71,13 +71,21 @@ Eric Kernfeld
 
 Summary of Wilkinson's ``Parameter inference for stochastic kinetic models of bacterial gene regulation'', a book chapter in \cite{Bernardo2012}.
 
-\section{Purpose}
-This paper develops tools to study bacterial behavior, which is sometimes nondeterministic. It investigates a possible mechanism for this randomness: fluctuations in biochemical systems that regulate cell metabolism. In other papers, these systems are modeled using continuous-time Markov jump processes. This gives a rigorous treatment of stochastic dynamics. One remaining issue is parameter inference from data that are noisy, discrete-time, and partial. The paper addresses this problem via Bayesian inference and MCMC.
+\begin{abstract}
+In this paper, Wilkinson attempts to infer reaction rates for biochemical networks in a setting with discrete observations, missing data, and measurement error. He uses vague priors and likelihood-free MCMC methods \EMK{Do I have to spell out ``Markov Chain Monte Carlo''?} within a Bayesian model. He runs four main simulations. The first three iterate through successively more difficult and realistic measurement models, and they show the approach can accurately infer three key reaction rates with a useful precision. The fourth shows that a naive model, where the fluorescent reporter protein is proportional to the protein of interest, does not work. All tests are conducted using synthetic data on only one vector of true parameters.
 
-\section{Bare-Bones Biology}
- As a motivating case, Wilkinson uses the ``decision'' of {\it Bacillus subtilis} whether to become mobile. The paper centers around a gene encoding {\it flagellin}, which is a protein component of organelles that allow motility. Because it can be disorienting, I'll relay some of the biological relationships in short sentences in the next paragraph. 
+I plan to implement the method in Julia and reproduce the experiments. To honestly test the method, I need to do more simulations, too: what happens when the log-space mean of the prior is not near the true values, or when the true values are somewhere other than Wilkinson's choice? What happens when all the parameters are unknown, rather than just the three we are interested in?
+\end{abstract}
 
-The protein {\it flagellin} helps bacteria move. The protein $\sigma^D$ promotes {\it flagellin}. The {\it fla / che} operon \footnote{Operons are the basic transistor-like elements of the genome. In response to an outside stimulus, such as high levels of the sugar lactose, a normally active operon may become inactive or vice versa. By ``active'', I mean that the DNA encoded by the operon can be transcribed into RNA.} contains many motility-related genes, including the one for $\sigma^D$. The protein $\sigma^A$ and the protein {\it CodY} both suppress the {\it fla / che} operon. Thus, they suppress $\sigma^D$, and they indirectly suppress {\it flagellin}. In fact, {\it CodY} also downregulates {\it flagellin} directly. This is easiest to digest as a figure.
+
+\section{Introduction}
+\subsection{Summary}
+This paper develops tools to study bacterial behavior, which is sometimes random: three bacilli in similar environments will act differently. It investigates a possible mechanism for this randomness: fluctuations in biochemical systems that regulate cell metabolism. In this paper and others, these systems are modeled using continuous-time Markov jump processes. This gives a rigorous treatment of stochastic dynamics. One remaining issue, the subject of this paper, is parameter inference for these jump processes using data that are noisy, discrete-time, and partial. The paper addresses this problem via Bayesian inference and MCMC.
+
+\subsection{Bare-Bones Biology}
+ As a motivating case, Wilkinson uses the ``decision'' of {\it Bacillus subtilis} whether to become mobile. The paper centers around a gene encoding {\it flagellin}, which is a protein component of organelles that allow motility. Because biological networks can be disorienting, I'll relay some of the biological relationships in short sentences in the next paragraph. 
+
+The protein {\it flagellin} helps bacteria move. The protein $\sigma^D$ promotes {\it flagellin}. The {\it fla / che} operon \footnote{Proteins are complex molecules that take myriad forms and roles within a cell. Operons are the basic transistor-like elements of the genome. In response to an outside stimulus, such as high levels of the sugar lactose, a normally active operon may become inactive or vice versa. By ``active'', I mean that the DNA encoded by the operon can be transcribed into RNA; this is the first step in the production of proteins.} contains many motility-related genes, including the one for $\sigma^D$. The protein $\sigma^A$ and the protein {\it CodY} both suppress the {\it fla / che} operon. Thus, they suppress $\sigma^D$, and they indirectly suppress {\it flagellin}. In fact, {\it CodY} also downregulates {\it flagellin} directly. This is easiest to digest as a figure.
 
 \begin{figure}[h!]
 \begin{center}
@@ -103,31 +111,34 @@ The protein {\it flagellin} helps bacteria move. The protein $\sigma^D$ promotes
 % {\it CodY}  & Type of Molecule & suppresses & promotes& Is suppressed by & Is promoted by\\
 %\end{tabular} 
 %\right]$
-\EMK{Editing note: for consistency, fix every expression where $\theta$ is to the left of $x$.}
 
 \section{The Model}
-Since we're simulating a biochemical system, suppose there are $X_{j}(t)$ particles of type $j$ at time $t$, $j\in \{1 ... u\}$. These particles interact via a set of reactions $\mathcal{R}_i$, $i\in \{1 ... v\}$, with $\mathcal{R}_i$ consuming $p_{ij}$ particles of type $j$ and producing $q_{ij}$ particles of type $j$. I'll refer to these en masse as $X(t)$, $P$, $Q$ and once it $R_i(t)$ is defined, $R(t)$. Defining the matrix $S$ to be $Q^T-P^T$, and letting $R_{i}(t)$ denote the number of reactions of type $i$ in $[0,t]$, then $X(t) - X(0) = SR(t)$. Under some assumptions, the different reaction channels evolve independently, and $R_i(t)$ is a Poisson process with intensity $c_i\int_0^t \prod_{j=1}^u {{X_j(t)}\choose{p_{ij}}}$. %Define $h_i(c_i, X(t)) \equiv c_i\int_0^t \prod_{j=1}^u {{X_j(t)}\choose{p_{ij}}}$. 
-The $c_i$'s are unknown.
+Since we're simulating a biochemical system, suppose there are $X_{j}(t)$ particles of type $j$ at time $t$, $j\in \{1 ... u\}$. These particles interact via a set of reactions $\mathcal{R}_{i}$, $i\in \{1 ... v\}$, with $\mathcal{R}_{i}$ consuming $p_{ij}$ particles of type $j$ and producing $q_{ij}$ particles of type $j$. Let $R_{i}(t)$ denote the number of reactions of type $i$ in $[0,t]$. I'll refer to these using the arrays $X(t)$, $P$, $Q$ and once it $R_{i}(t)$ is defined, $R(t)$. Defining the matrix $S$ to be $Q^T-P^T$, the model says that $X(t) - X(0) = SR(t)$. Under some assumptions \EMK{maybe I should look into these}, the different reaction channels evolve independently, and $R_{i}(t)$ is a Poisson process with intensity $c_{i}\int_0^t \prod_{j=1}^u {{X_j(t)}\choose{p_{ij}}}$. %Define $h_{i}(c_{i}, X(t)) \equiv c_{i}\int_0^t \prod_{j=1}^u {{X_j(t)}\choose{p_{ij}}}$. 
+The $c_{i}$'s are unknown.
 
-Suppose $n$ reactions occur between time $0$ and time $T$. Suppose the $i$th one occurs at time $t_i$ and suppose it has type $\nu_i$. Define $t_0\equiv0$ and $t_{n+1}\equiv T$. When it comes to inference, you may recognize the likelihood as a competing hazards model from continuous Markov chain theory\footnote{At times, I choose to use equations that stand free of sentences. These I do not punctuate.}. \EMK{This likelihood is a guess, because Wilkinson writes it using a function ($h_0$) that he never defines. Working for now on the fact that they're competing (homogeneous) Poisson processes. I'm fairly sure this is correct as I have it, or in other words, that $h_0$ is $\sum h_i$.}
-$$P(\nu, t|c) = \prod_{i=1}^n c_{\nu_i} \prod_{j=1}^u {{X_{j}(t_{i-1})}\choose{p_{{\nu_i}j}}}\exp(-c_{\nu_i}\int_0^T {{X_j(t)}\choose{p_{{\nu_i}j}}} )dt$$
+Suppose $n$ reactions occur between time $0$ and time $T$. Suppose the $i$th one occurs at time $t_{i}$ and suppose it has type $\nu_{i}$. Define $t_0\equiv0$ and $t_{n+1}\equiv T$. When it comes to inference, the likelihood follows a competing-hazards model from continuous Markov chain theory\footnote{At times, I choose to use equations that stand free of sentences. These I do not punctuate.}. 
+$$P(\nu, t|c) = \prod_{i=1}^n c_{\nu_{i}} \prod_{j=1}^u {{X_{j}(t_{i-1})}\choose{p_{{\nu_{i}}j}}}\exp\left(-c_{\nu_{i}}\int_0^T {{X_j(t)}\choose{p_{{\nu_{i}}j}}} dt\right)$$
 
-Wilkinson points out that $\int_0^T {{X_j(t_{i-1})}\choose{p_{{\nu_i}j}}}dt$ is tractable; in fact, it is $\sum_{i=0}^{n} (t_{i+1}-t_{i}) {{X_j(t_{i})}\choose{p_{{\nu_i}j}}}$. 
+Wilkinson points out that $\int_0^T {{X_j(t_{i-1})}\choose{p_{{\nu_{i}}j}}}dt$ is tractable; in fact, I derived it as $\sum_{i=0}^{n} (t_{i+1}-t_{i}) {{X_j(t_{i})}\choose{p_{{\nu_{i}}j}}}$. 
 
 If the number of reactions of type $k$ is $r_k$, then the likelihood becomes 
 $$P(\nu, t|c) = \prod_{k=1}^u \left\{ c_{k}^{r_k} 
-\left\{\prod_{j=1}^u { X_{j}(t_{i-1})\choose p_{kj}}^{r_k}\right\}\exp(-c_{k}\int_0^T \sum_j{X_j(t)\choose p_{kj}} )dt\right\}.$$  
-Still calling it the likelihood, Wilkinson omits the bracketed term $\prod_{j=1}^u { X_{j}(t_{i-1})\choose p_{kj}}^{r_k}$, probably because it does not involve $c$. Either way, the gamma distribution is conjugate for $c_k$, and setting independent priors $c_k\sim \Gamma(a_k, b_k)$, the posteriors are independent with $c_k\sim \Gamma(a_k+r_k, b_k+\int_0^T \sum_j {X_j(t) \choose p_{kj}}dt )$. This is an ideal scenario; missing data make inference more challenging.
+\left\{\prod_{j=1}^u { X_{j}(t_{i-1})\choose p_{kj}}^{r_k}\right\}\exp\left(-c_{k}\int_0^T \sum_j{X_j(t)\choose p_{kj}} \right)dt\right\}.$$  
+Still calling it the likelihood, Wilkinson omits the bracketed term $\prod_{j=1}^u { X_{j}(t_{i-1})\choose p_{kj}}^{r_k}$, probably because it does not involve $c$. Regardless, the gamma distribution is conjugate for $c_k$, and setting independent priors $c_k\sim \Gamma(a_k, b_k)$, the posteriors are independent with $c_k\sim \Gamma(a_k+r_k, b_k+\int_0^T \sum_j {X_j(t) \choose p_{kj}}dt )$. This is an ideal scenario; missing data make inference more challenging.
 
 \section{Inference}
 
-In Wilkinson's data, not every reaction is recorded. Measurements are intermittent, and only some of the particle counts are measured. There is error in the measurements, to boot.  The tidy scheme above scheme falls to pieces. Wilkinson says it better than I can: ``Consider first the best-case scenario--perfect observation of the system at discrete times. Conditional on discrete-time observations, the Markov process breaks up into a collection of independent bridge processes that appear not to be analytically tractable.'' He goes on to mention alternative strategies, which include the MCMC scheme of \cite{Boys2008} and the approximation \cite{gillespie_CLE_2000} paired with inference via \EMK{cite more Wilkinson papers here.}
+In Wilkinson's data, not every reaction is recorded. Measurements are intermittent, and only some of the particle counts are measured. There is error in the measurements, too. Conjugate priors cannot be used because even computing the likelihood is infeasible. Wilkinson says it better than I can: ``Consider first the best-case scenario--perfect observation of the system at discrete times. Conditional on discrete-time observations, the Markov process breaks up into a collection of independent bridge processes that appear not to be analytically tractable.'' He goes on to mention alternative strategies, which include the MCMC scheme of \cite{Boys2008} and the approximation \cite{gillespie_CLE_2000} paired with inference via \EMK{cite more Wilkinson papers here.}
 
 %For my own benefit: to produce a chain of samples from $P(\theta|D)$, using a proposal $q(\theta^*|\theta)$, accept with probability $\min \{1, A\}$ if $A=\frac{q(\theta|\theta^*)}{q(\theta^*|\theta)} \times \frac{P(\theta^*|D)}{P(\theta|D)}$. 
 
-The crux of the paper is a new competitor to all of these. It builds upon the fact that exact simulations from this model are possible, and also on the fact that measurement error helps soften the requirements on where the bridge should begin and end. Let $\theta$ include $c$, controlling the reaction rates, and $\tau$, controlling the degree of measurement error. Let $x$ denote the true state of the chain, but measured only at discrete times. That means the likelihood $P(x|\theta)$ is thought to be intractable. Let $\mathcal{D}$ be $x$ measured with error and possibly with missing data for some particle types. 
+The crux of the paper is a competitor to all of these. It builds upon the fact that exact simulations from this model are possible, and also on the fact that measurement error helps soften the requirements on where the bridge process should begin and end. Let $\theta$ include $c$, controlling the reaction rates, and $\tau$, controlling the scale of measurement error. Let $x$ denote the true state of the chain, but measured only at discrete times. The likelihood $P(x|\theta)$ is thought to be intractable. Let $\mathcal{D}$ be $x$ measured with error and possibly with missing data for some particle types. 
 
-If we want to construct a Metropolis-Hastings scheme to sample a new value $(x^*, \theta^*)$ from $P(x, \theta|\mathcal{D})=P( \theta)P(x| \theta)P(\mathcal{D}|x, \theta)$ using a proposal $f(\theta^*, x^*|\theta, x)$, it works out that the acceptance ratio must be the min of 1 and $\frac{f(\theta^*, x^*|\theta, x)}{f(\theta, x|\theta^*, x^*)}\times \frac{ P( \theta)}{ P( \theta^*)} \times \frac{P(x| \theta)}{P(x^*| \theta^*)} \times \frac{P(\mathcal{D}|x, \theta)}{P(\mathcal{D}|x^*, \theta^*)}$. In the model Wilkinson considers, $P(\mathcal{D}|x,\theta)$ is simple, but $P(x|\theta)$ is not feasible to compute. The insight is that one can cancel the term $ \frac{P(x| \theta)}{P(x^*| \theta^*)}$ by constructing a proposal that contains  $\frac{P(x^*| \theta^*)}{P(x| \theta)}$ as a factor. This spills straight out if instead of drawing both $x$ and $\theta$ from out-of-the-box proposals, we draw $\theta^*\sim f(\theta^*|\theta)$ and compute $x^*$ via simulation with parameters $\theta^*$. The end result is that the ratio of interest simplifies:
+If we want to construct a Metropolis-Hastings scheme to sample from $P(x, \theta|\mathcal{D})\propto P( \theta)P(x| \theta)P(\mathcal{D}|x, \theta)$ using a proposal $f(\theta^*, x^*|\theta, x)$, it works out that the acceptance ratio must be the min of 1 and $$\frac{f(\theta^*, x^*|\theta, x)}{f(\theta, x|\theta^*, x^*)}\times 
+\frac{ P( \theta)}{ P( \theta^*)} \times 
+\frac{P(x| \theta)}{P(x^*| \theta^*)} \times
+ \frac{P(\mathcal{D}|x, \theta)}{P(\mathcal{D}|x^*, \theta^*)}.$$ 
+In the model Wilkinson considers, $P(\mathcal{D}|x,\theta)$ is simple, but $P(x|\theta)$ is not feasible to compute. The insight is that one can cancel the term $ \frac{P(x| \theta)}{P(x^*| \theta^*)}$ by constructing a proposal that contains  $\frac{P(x^*| \theta^*)}{P(x| \theta)}$ as a factor. This spills straight out if instead of drawing both $x$ and $\theta$ from out-of-the-box proposals, we draw $\theta^*\sim f(\theta^*|\theta)$ and compute $x^*$ via simulation with parameters $\theta^*$. The end result is that the ratio of interest simplifies:
 \begin{align*}
 &\frac{f(\theta^*, x^*|\theta, x)}{f(\theta, x|\theta^*, x^*)}\times \frac{P(x| \theta)}{P(x^*| \theta^*)}\times \frac{ P( \theta)}{ P( \theta^*)}  \times \frac{P(\mathcal{D}|x, \theta)}{P(\mathcal{D}|x^*, \theta^*)}\\
 &=\frac{f(\theta^*|\theta)}{f(\theta|\theta^*)}\times \frac{P(x^*| \theta^*)}{P(x| \theta)} \times \frac{P(x| \theta)}{P(x^*| \theta^*)} \times \frac{ P( \theta)}{ P( \theta^*)}\times \frac{P(\mathcal{D}|x, \theta)}{P(\mathcal{D}|x^*, \theta^*)}\\
@@ -135,31 +146,85 @@ If we want to construct a Metropolis-Hastings scheme to sample a new value $(x^*
 \end{align*}
 To simplify further, use an independence sampler with the prior as a proposal and your calculation reduces to $ \frac{P(\mathcal{D}|x, \theta)}{P(\mathcal{D}|x^*, \theta^*)}.$
 
-If the measurement error is small, or $\mathcal{D}$ is high-dimensional, or both, this scheme leads to very high rejection rates, so it is not usable. Instead, you can break down $X$ and $\mathcal{D}$ over time and use an M-H step that alters only one coordinate of $x$. %This relies on the fact that the hidden state sequence is Markovian, i.e. that $P(x, \theta|\mathcal{D}) = \prod_t P(x_{t+1}, \theta|x_t, \mathcal{D})P(x_t, \theta|\mathcal{D})$. 
- Suppose you draw inputs from $P(\theta, x|\mathcal{D}_{1:t})$, propose $(\theta^*, x_t^*)$ by perturbing $(\theta, x_t)$ slightly, and propose $x_{t+1}^*$ with a new forward simulation. Suppose you then accept with probability $\min\{1,
-\frac{P(\mathcal{D}_{t+1}|x_{t+1}^*, \theta^*)}{P(\mathcal{D}_{t+1}|x_{t+1}, \theta)}\}$. The claim is that you are left with an exact draw from $P(\theta, x|\mathcal{D}_{1:t+1})$. \EMK{Why is this true? This doesn't quite seem to match any of the schemes discussed in 516. It seems to be sequential monte carlo, which I'm now trying to teach myself.} This leads to higher acceptance rates, and by starting with the prior and moving up through time, you arrive at samples from the posterior conditioned on all the data.
+If the measurement error is small, or $\mathcal{D}$ is high-dimensional, or both, this scheme leads to very high rejection rates, so it is not usable. Instead, you can break down $X$ and $\mathcal{D}$, adding only one data point at a time. The exact approach is best understood by referring to Algorithm 1. In broad strokes, the procedure alternates between generating large samples from $P(\theta, x_{t_{1:i}}|\mathcal{D}_{t_{1:i}})$, done via  likelihood-free MCMC, and folding in new data (incrementing $i$). To be clear, instead of running MCMC just once, in this method runs another five million steps through the sampler {\it for every time point in the dataset}. It isn't as bad as it sounds: for a sampler that runs only once, the chain will not mix without a sophisticated proposal, and constructing a usable proposal is often linear in the size of the data anyway. %This relies on the fact that the hidden state sequence is Markovian, i.e. that $P(x, \theta|\mathcal{D}) = \prod_t P(x_{t+1}, \theta|x_t, \mathcal{D})P(x_t, \theta|\mathcal{D})$. 
+ 
 
-%The proposal ratio $\times$ posterior ratio can be expanded as $$
-%\frac{P(x_{t+1}^*| x_t^*,\theta^*, \mathcal{D}_t)}{P(x_{t+1}| x_t^*, \theta, \mathcal{D}_t)} 
-%\frac{P(x_t^*,\theta^*| \mathcal{D}_t)}{P(\theta,x_t| \mathcal{D}_t)}
-%\times 
-%\frac{P(x_{t+1}^*| \theta, x_t)}{P(x_{t+1}| x_t^*,\theta^*)}  
-%\frac{ P( \theta,x_t)}{ P( x_t^*,\theta^*)}   
-%\frac{P(\mathcal{D}_t|x_t, \theta)}{P(\mathcal{D}_t|x_t^*, \theta^*)}.$$ That shows 
+\begin{algorithm}[h]
+\caption{ \label{seqMCMC} Wilkinson's sequence of MCMC Samplers}
+Given a hidden continuous-time Markov process $\{x_t\}_{t=0}^T$ with: \\
+\Indp \Indp
+Unknown parameters $\theta$\\
+Known initial state $x_0$\\
+Data points $\mathcal{D}_{t_{i}}$ at times $t_{i}$, $i \in \{1, ... I\}$ \\
+A simple, tractable error model $P(\mathcal{D}_{t_{i}}|x_{t_{i}}, \theta)$\\
+A simulator for paths of $x$ given $\theta$ the process\\
+A big array $B_0$ (Wilkinson uses length 1,000,000) of samples from a prior on $\theta, x_0$\\
+Empty arrays $B_{i}$ of the same length\\
+$\phantom{0}$\\
+\Indm \Indm
+For each time point (for $i \in \{1, ... I\}$), fill $B_{i}$ with samples from this Metropolis Hastings scheme:\\
+\Indp\Indp
+Initialize $(\theta, x_{t_{i}})$ \\
+Until $B_{i}$ is full: \\
+\Indp\Indp
+Draw $(\theta^*, x_{t_{i-1}}^*)$ from $B_{i-1}$ or a KDE of its contents (note $t_0\equiv0$)\\
+Using $(\theta^*, x_{t_{i-1}}^*)$, simulate up to $x_{t_{i}}^*$, the state at time $t_{i}$ \\
+Set $A=\min(1, \frac{P(\mathcal{D}_{t_{i}}|x_{t_{i}}^*, \theta^*)}{P(\mathcal{D}_{t_{i}}|x_{t_{i}}, \theta)})$\\
+With probability $A$, overwrite $(\theta, x_{t_{i}})$ with $(\theta^*, x_{t_{i}}^*)$\\
+If the number of times through this loop exceeds 1000 ( for the burn-in) and equals one modulo five (for the thinning), add $(\theta, x_{t_{i}})$ to $B_{i}$\\
+\Indm \Indm
+\end{algorithm}
 
-At this point, Wilkinson describes a connection to Approximate Bayesian Computation (ABC), and he describes software and computing tools that can be used to run the model. 
 
-\section{An experiment}
-Wilkinson next describes a twelve-reaction regulatory model for these chemicals, spelling it out in table 1, and he lists three known reaction rates that can be used to test the model's performance. The prior distributions are each log-uniform over 4 orders of magnitude. The experiment assumes $D_t$ is the number of $\sigma^D$ molecules observed with Gaussian error s.d. 10 molecules. The initial state of the cell is assumed known, and observations occur every 5 minutes for 2 hours. Wilkinson says ``1,000,000 particles were used, together with a burn-in of 1,000 iterations and a thin of 5[.]'' \EMK{He never defines particles, so pending further reading, my best guess is that this means he starts with 1e6 samples from the prior, carrying each one forward. Not sure how the burn-in fits in.} 
+In any M-H scheme, the acceptance probability is either $1$ or the proposal ratio times the posterior ratio. For step $i$, the proposal ratio $\times$ posterior ratio can be expanded as follows:
+$$ \frac{P(x_{t_{i}}^*| x_{t_{i-1}}^*,\theta^*\red{, \mathcal{D}_{t_{i-1}}})}{P(x_{t_{i}}| x_{t_{i-1}}, \theta \red{, \mathcal{D}_{t_{i-1}}})} 
+\frac{P(x_{t_{i-1}}^*,\theta^*| \mathcal{D}_{t_{i-1}})}{P(x_{t_{i-1}}, \theta| \mathcal{D}_{t_{i-1}})}
+\times 
+\frac{P(x_{t_{i}}^*| x_{t_{i-1}}^*,\theta^*\red{, \mathcal{D}_{t_{i-1}}})}{P(x_{t_{i}}| x_{t_{i-1}}, \theta \red{, \mathcal{D}_{t_{i-1}}})}
+\frac{ P(x_{t_{i-1}}, \theta| \mathcal{D}_{t_{i-1}})}{ P( x_{t_{i-1}}^*,\theta^*| \mathcal{D}_{t_{i-1}})}   
+\frac{P(\mathcal{D}_{t_{i}}|x_{t_{i}}, \theta)}{P(\mathcal{D}_{t_{i}}|x_{t_{i}}^*, \theta^*)}.$$   
+this shows how the compact form in Algorithm \ref{seqMCMC} arises. The Markov model would allow us to include or omit red terms at will. Note that using a KDE does not affect the ratio, because usually the kernel $K(\cdot|\cdot)$ is symmetric, so the extra term $\frac{K(\theta^*|\theta)}{K(\theta|\theta^*)}$ is just $1$.
 
-He also repeats this experiment, altering the measurement process so that it relies on a proxy for $\sigma^D$, a fluorescent protein (GFP). He performs inference by a) plugging GFP levels into the algorithm as if they were exactly proportional to $\sigma^D$ and b) including the production and decay of GFP in the biochemical model. He concludes that plugging in GFP for $\sigma^D$ leads to strong, incorrect posteriors, but that the full model is still useful.
+\section{Experiments, Extensions and Further Checks}
+\subsection{Experiments}
 
-\section{Extensions}
+Wilkinson runs four main simulations. All tests are conducted using synthetic data on only one vector of true parameters. The first three iterate through successively more difficult and realistic measurement models:
+\begin{itemize}
+\item First experiment: observe $\sigma^D$  directly
+\item Second experiment: observe $Hag$ rather than $\sigma^D$
+\item Third experiment: observe only GFP
+\end{itemize}
+
+The fourth shows that a naive model, assuming the fluorescent reporter protein is proportional to the protein of interest, leads to strong and incorrect claims in the posterior probabilities. 
+
+\subsubsection{Details needed to reproduce experiments}
+Wilkinson describes a twelve-reaction regulatory model for these chemicals, spelling it out in table 1, and he lists three scientifically important reaction rates that, for tests of the inference method, will be treated as a ``ground truth.'' The prior distributions cover 4 orders of magnitude, and they are uniform on a log scale. The experiment assumes $D_t$ is the number of molecules observed with Gaussian error of standard deviation 10 molecules. \EMK{Gaussian noise for integer data? Could do Bin($p=0.5, n=40$). What is the physical mechanism behind the measurement error?} The initial state of the cell is assumed known \EMK{but does he specify it?}, and observations occur every 5 minutes (300 seconds) for 2 hours (7200 seconds). 
+
+%Wilkinson says ``1,000,000 particles were used, together with a burn-in of 1,000 iterations and a thin of 5[.]''
+% \EMK{He never defines particles, so pending further reading, my best guess is that this means he starts with 1e6 samples from the prior, carrying each one forward. Not sure how the burn-in fits in.} 
+
+%He also repeats this experiment, altering the measurement process so that it relies on a proxy for $\sigma^D$, a fluorescent protein (GFP). He performs inference by a) plugging GFP levels into the algorithm as if they were exactly proportional to $\sigma^D$ and b) including the production and decay of GFP in the biochemical model. He concludes that plugging in GFP for $\sigma^D$ leads to strong, incorrect posteriors, but that the full model is still useful.
+
+ \subsection{Further checks}
+Some authors \cite{protein_interaction} claim that reaction rates range over seven orders of magnitude. Wilkinson's prior covers only four orders of magnitude. What happens when the log-space mean of the prior is not near the true values? In general, where does the prior information come from?
+
+Wilkinson also treats parameters as known except for the three parameters of interest. How well does this method work when the rest of the reaction rates must be inferred, or when the measurement error must be inferred?
+
+ \subsection{Extensions}
+
 Wilkinson mentions many areas for future work. 
 \begin{itemize}
 \item His likelihood-free MCMC scheme applies to any hidden, discretely observed continuous Markov process. It also can be used for multiple time-series $\mathcal{D}^1, ..., \mathcal{D}^p$ by using posteriors from one as priors for the next.
 \item This method can fuse data from two bacterial strains, one missing a certain gene, by using posteriors from one experiment as priors for the next. It can also accomodate multiple fluorescent ``reporters'' for different molecules.
-\item Unsolved problems include scaling the method up to process data on batches of cells observed en masse and integrating data from microarrays or RNA-seq.
+\item Unsolved problems include scaling the method up to process data on batches of cells integrating data from microarrays or RNA-seq.
+\end{itemize}
+
+I also have some ideas for scaling.
+\begin{itemize}
+\item Could an EM algorithm handle the missing data more quickly?
+\item Do you really need such a large sample for every intermediate step? 
+\item Could you build proposal distributions using variational methods?
+\item Could I build BEMC around this?
 \end{itemize}
 
 

@@ -3,8 +3,8 @@
 \bibitem{Bernardo2012}
 Bernardo, J.M., Bayarri, M.J., Berger, J.O., Dawid, A.P., Heckerman, D., Smith,
   A.F.M., West, M.:
-\newblock {Bayesian statistics 9 ninth Valencia international meeting on
-  Bayesian statistics, Benidorm, Spain, 03-08.06.2010}.
+\newblock Ninth Valencia international meeting on Bayesian statistics,
+  Benidorm, Spain, 03-08.06.2010.
 \newblock Oxford U.P., Oxford (2012)
 
 \bibitem{Boys2008}
@@ -17,5 +17,13 @@ Boys, R.J., Wilkinson, D.J., Kirkwood, T.B.:
 Gillespie, D.T.:
 \newblock The chemical langevin equation.
 \newblock The Journal of Chemical Physics \textbf{113}(1) (2000)  297--306
+
+\bibitem{protein_interaction}
+Schlosshauer, M., Baker, D.:
+\newblock Realistic protein--protein association rates from a simple
+  diffusional model neglecting long-range interactions, free energy barriers,
+  and landscape ruggedness.
+\newblock Protein Science : A Publication of the Protein Society \textbf{13}(6)
+  (06 2004)  1660--1669
 
 \end{thebibliography}
