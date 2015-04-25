@@ -72,7 +72,7 @@ Eric Kernfeld
 Summary of Wilkinson's ``Parameter inference for stochastic kinetic models of bacterial gene regulation'', a book chapter in \cite{Bernardo2012}.
 
 \begin{abstract}
-In this paper, Wilkinson attempts to infer reaction rates for biochemical networks in a setting with discrete observations, missing data, and measurement error. He uses vague priors and likelihood-free MCMC methods within a Bayesian model. He runs four main simulations. The first three iterate through successively more difficult and realistic measurement models, and they show the approach can accurately infer three key reaction rates with a useful precision. The fourth studies a naive model, showing it leads to overconfident, incorrect inferences. All tests are conducted using synthetic data on only one vector of true parameters.
+In this paper, Wilkinson attempts to infer reaction rates for biochemical networks in a setting with discrete observations, missing data, and measurement error. He uses vague priors and likelihood-free MCMC methods within a Bayesian model. He runs four main simulations. The first three iterate through successively more difficult and realistic measurement models, and they show the approach can accurately infer three key reaction rates with a useful precision. The fourth shows that a naive model, where the fluorescent reporter protein is proportional to the protein of interest, does not work. All tests are conducted using synthetic data on only one vector of true parameters.
 
 I plan to implement the method in Julia and reproduce the experiments. To honestly test the method, I need to do more simulations, too: what happens when the log-space mean of the prior is not near the true values, or when the true values are somewhere other than Wilkinson's choice? What happens when all the parameters are unknown, rather than just the three we are interested in?
 \end{abstract}
@@ -80,7 +80,7 @@ I plan to implement the method in Julia and reproduce the experiments. To honest
 
 \section{Introduction}
 \subsection{Summary}
-This paper develops tools to study bacterial behavior, which is sometimes random: three bacilli in similar environments may act differently. It investigates a possible mechanism for this randomness: fluctuations in biochemical systems that regulate cell metabolism. In this paper and others, these systems are modeled using continuous-time Markov jump processes. This allows for rigorous treatment of stochastic dynamics. The subject of Wilkinson's paper is parameter inference for these jump processes, which is difficult because in practice the data are partial, discrete-time, and noisy. His paper addresses this problem via Bayesian inference and MCMC.
+This paper develops tools to study bacterial behavior, which is sometimes random: three bacilli in similar environments will act differently. It investigates a possible mechanism for this randomness: fluctuations in biochemical systems that regulate cell metabolism. In this paper and others, these systems are modeled using continuous-time Markov jump processes. This allows for rigorous treatment of stochastic dynamics. The subject of Wilkinson's paper is parameter inference for these jump processes, which is difficult because in practice the data are partial, discrete-time, and noisy. His paper addresses this problem via Bayesian inference and MCMC.
 
 \subsection{Bare-Bones Biology}
  As a motivating case, Wilkinson uses the ``decision'' of {\it Bacillus subtilis} whether to become mobile. The paper centers around a gene encoding {\it flagellin}, which is a protein component of organelles that allow motility. Because biological networks can be disorienting, I'll outline some of the biological relationships in short sentences in the next paragraph. 
@@ -95,7 +95,6 @@ The protein {\it flagellin} helps bacteria move. The protein $\sigma^D$ promotes
 \label{fig:}
 \end{figure}
 
-The paper focuses on measurements of $\sigma^D$. It attempts to infer the rates of binding of $fla/che$ repressors, unbinding of $fla/che$ repressors, and production of $\sigma^D$.
 
 %Rather than describing regulatory relations in sentences, I'll relay Wilkinson's biochemical highlights in the following table. 
 %
@@ -114,7 +113,7 @@ The paper focuses on measurements of $\sigma^D$. It attempts to infer the rates 
 %\right]$
 
 \section{The Model}
-Since we're simulating a biochemical system, suppose there are $X_{j}(t)$ particles of type $j$ at time $t$, $j\in \{1 ... u\}$. These particles interact via a set of reactions $\mathcal{R}_{i}$, $i\in \{1 ... v\}$, with $\mathcal{R}_{i}$ consuming $p_{ij}$ particles of type $j$ and producing $q_{ij}$ particles of type $j$. Let $R_{i}(t)$ denote the number of reactions of type $i$ in $[0,t]$. I'll refer to these using the arrays $X(t)$, $P$, $Q$ and $R(t)$. Defining the matrix $S$ to be $Q^T-P^T$, the model says that $X(t) - X(0) = SR(t)$. Under some assumptions \EMK{maybe I should look into these}, the different reaction channels evolve independently, and $R_{i}(t)$ is a Poisson process with intensity $c_{i}\int_0^t \prod_{j=1}^u {{X_j(t)}\choose{p_{ij}}}$. %Define $h_{i}(c_{i}, X(t)) \equiv c_{i}\int_0^t \prod_{j=1}^u {{X_j(t)}\choose{p_{ij}}}$. 
+Since we're simulating a biochemical system, suppose there are $X_{j}(t)$ particles of type $j$ at time $t$, $j\in \{1 ... u\}$. These particles interact via a set of reactions $\mathcal{R}_{i}$, $i\in \{1 ... v\}$, with $\mathcal{R}_{i}$ consuming $p_{ij}$ particles of type $j$ and producing $q_{ij}$ particles of type $j$. Let $R_{i}(t)$ denote the number of reactions of type $i$ in $[0,t]$. I'll refer to these using the arrays $X(t)$, $P$, $Q$ and once it $R_{i}(t)$ is defined, $R(t)$. Defining the matrix $S$ to be $Q^T-P^T$, the model says that $X(t) - X(0) = SR(t)$. Under some assumptions \EMK{maybe I should look into these}, the different reaction channels evolve independently, and $R_{i}(t)$ is a Poisson process with intensity $c_{i}\int_0^t \prod_{j=1}^u {{X_j(t)}\choose{p_{ij}}}$. %Define $h_{i}(c_{i}, X(t)) \equiv c_{i}\int_0^t \prod_{j=1}^u {{X_j(t)}\choose{p_{ij}}}$. 
 The $c_{i}$'s are unknown.
 
 Suppose $n$ reactions occur between time $0$ and time $T$. Suppose the $i$th one occurs at time $t_{i}$ and suppose it has type $\nu_{i}$. Define $t_0\equiv0$ and $t_{n+1}\equiv T$. When it comes to inference, the likelihood follows a competing-hazards model from continuous Markov chain theory\footnote{At times, I choose to use equations that stand free of sentences. These I do not punctuate.}. 
@@ -130,10 +129,11 @@ The gamma distribution is conjugate for $c_k$, and setting independent priors $c
 
 \section{Inference}
 
-In Wilkinson's data, not every reaction is recorded. Measurements are intermittent, with error, and only $\sigma^D$ or a fluorescent reporter gets measured. Conjugate priors cannot be used because computing the likelihood is infeasible. 
-%Wilkinson says it better than I can: ``Consider ... observation of the system at discrete times. ... [T]he Markov process breaks up into a collection of independent bridge processes that appear not to be analytically tractable.'' %He goes on to mention alternative strategies, which include the MCMC scheme of \cite{Boys2008} and the approximation \cite{gillespie_CLE_2000} paired with inference via \EMK{cite more Wilkinson papers here.}
+In Wilkinson's data, not every reaction is recorded. Measurements are intermittent, only some of the particle counts are measured, and there is error in the measurements. Conjugate priors cannot be used because even computing the likelihood is infeasible. Wilkinson says it better than I can: ``Consider ... observation of the system at discrete times. ... [T]he Markov process breaks up into a collection of independent bridge processes that appear not to be analytically tractable.'' He goes on to mention alternative strategies, which include the MCMC scheme of \cite{Boys2008} and the approximation \cite{gillespie_CLE_2000} paired with inference via \EMK{cite more Wilkinson papers here.}
+
 %For my own benefit: to produce a chain of samples from $P(\theta|D)$, using a proposal $q(\theta^*|\theta)$, accept with probability $\min \{1, A\}$ if $A=\frac{q(\theta|\theta^*)}{q(\theta^*|\theta)} \times \frac{P(\theta^*|D)}{P(\theta|D)}$. 
-To adapt, the paper modifies likelihood-free methods from \cite{Marjoram23122003}. To make the mathematics easier to digest, I'll introduce first the predecessor and only then Wilkinson's method. 
+
+The crux of the paper is a competitor to all of these. It modifies methods from \cite{Marjoram23122003}, so to make the mathematics easier to digest, I'll introduce first the predecessor and only then Wilkinson's method. 
 
 Let $\theta$ include $c$, controlling the reaction rates, and $\tau$, controlling the scale of measurement error. Let $x$ denote the true state of the chain, but measured only at discrete times. The likelihood $P(x|\theta)$ is thought to be intractable. Let $\mathcal{D}$ be $x$ measured with error and possibly with missing data for some particle types. If we want to construct a Metropolis-Hastings scheme to sample from $P(x, \theta|\mathcal{D})\propto P( \theta)P(x| \theta)P(\mathcal{D}|x, \theta)$ using a proposal $f(\theta^*, x^*|\theta, x)$, it works out that the acceptance ratio must be the min of 1 and $$\frac{f(\theta^*, x^*|\theta, x)}{f(\theta, x|\theta^*, x^*)}\times 
 \frac{ P( \theta)}{ P( \theta^*)} \times 

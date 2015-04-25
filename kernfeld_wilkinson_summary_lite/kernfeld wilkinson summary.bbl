@@ -18,6 +18,12 @@ Gillespie, D.T.:
 \newblock The chemical langevin equation.
 \newblock The Journal of Chemical Physics \textbf{113}(1) (2000)  297--306
 
+\bibitem{Marjoram23122003}
+Marjoram, P., Molitor, J., Plagnol, V., Tavar{\'e}, S.:
+\newblock Markov chain monte carlo without likelihoods.
+\newblock Proceedings of the National Academy of Sciences \textbf{100}(26)
+  (2003)  15324--15328
+
 \bibitem{protein_interaction}
 Schlosshauer, M., Baker, D.:
 \newblock Realistic protein--protein association rates from a simple
