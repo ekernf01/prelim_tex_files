@@ -1,0 +1,29 @@
+what is the statistical problem?
+                why is it important? 
+                why is it hard?
+                what attempts were made to solve it in previous work
+                introduce an example
+
+
+
+
+
+
+
+
+
+
+
+
+- the method and the theory behind it 
+
+
+
+
+
+
+
+
+
+
+- plan for experiments 

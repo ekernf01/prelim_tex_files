@@ -1,6 +1,6 @@
 \documentclass[12pt,a4paper,t,xcolor=dvipsnames,slidestop,compress,mathserif]{beamer}
 \usepackage{amsmath,amssymb,graphicx,color,multicol,amsfonts,algorithmic,url,stmaryrd,epsf}
-\usepackage{graphicx, algorithm}
+\usepackage{graphicx, algorithm2e}
 
 \include{macrofile2a}
 
@@ -77,7 +77,7 @@
 
 % Title Page Stuff
 % Title Page Stuff
-\title[Likelihood-free MCMC]{Prelim topic: Likelihood-free MCMC}
+\title[Likelihood-free MCMC]{Parameter inference for small biochemical systems}
 \author[Eric Kernfeld]{ {Eric Kernfeld}\inst{1}}
 \institute[University of Washington]
 { \inst{1}%
@@ -107,22 +107,72 @@ University of Washington Department of Statistics}
 Darren Wilkinson's ``Parameter inference for stochastic kinetic models of bacterial gene regulation,'' a book chapter in \cite{Bernardo2012}.
 
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Problem}
+\includegraphics[scale=0.25]{human_metabolism_kegg.png}
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Likelihood Free MCMC}
+\begin{frame}{Problem}
 
 Cast of Characters 
 \begin{itemize}
-\item $r_j$ is a menu item in a restaurant.
-\item $x_t$ is the amount of money in the cash register $t$. 
-\item $\mathcal{D}_t$ incomplete observation of $x_t$ with error.
-\item $c$ is the popularity of menu items.
+\item $r_j$ is a customer behavior pattern in a restaurant.
+\item $R_j(t)$ counts occurrences of $r_j$ up to time $t$.
+\item $c_j$ is the rate at which $r_j$ happens.
+\item $X(t)$ is the restaurant state: customers, orders, cash register. 
+\item $\mathcal{D}_t$ is an incomplete observation of $X(t)$ with error.
 \item $\tau$ governs measurement error.
 \item $\theta$ is $\tau$ and $c$ together.
 \end{itemize}
 
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Problem}
 
+$r_1$: 2 customers, hotcakes $\xrightarrow{c_1}$ 2 customers, 2 hotcakes, +\$5.65 \\
+\pause
+$$R_1(t)\sim PP(c_1{X_1(t)\choose2}{X_2(t)\choose1})$$
+\pause
+$r_2$: no prereqs $\xrightarrow{c_2}$ 1 customer\\
+\pause
+$$R_1(t)\sim PP(c_2)$$
+\pause
+$r_2$: sick customer, healthy customer, hotcakes $\xrightarrow{c_3}$ 2 sick customers\\
+\pause
+$$R_3(t)\sim PP(c_3{X_1(t)\choose1}{X_2(t)\choose1}{X_3(t)\choose1})$$
+Assume pattern $r_j$ occurs independently of other patterns except when the contents of the restaurant changes.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Problem}
+Given $\mathcal{D}_t$, find $c$. 
+\pause
+Also, switching to ODE's is not allowed: stochastic models are biologically necessary (\cite{reinker2006parameter} and references therein).
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Problem}
+Likelihood: $$P(X(\vec{t}), \vec{t}|c) = \prod_{i=1}^n c_{\nu_{i}} \prod_{j=1}^u {{X_{j}(t_{i-1})}\choose{p_{{\nu_{i}}j}}}\exp\left(-c_{\nu_{i}}\int_0^T {{X_j(t)}\choose{p_{{\nu_{i}}j}}} dt\right)$$
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Other work}
+\begin{itemize} 
+\item Approximate MJP with SDE \cite{golightly2005bayesian,bayes_stoch_mod,fearnhead2014inference}
+
+\item Method of moments \cite{milner2013moment,zechner2012moment}
+
+\item Variational inference with mean-field approximation  \cite{opper2008variational} 
+
+\item Approximate Bayesian Computation (ABC) and MCMC
+\cite{owen2014ABC_LF-MCMCcomparison,owen2014scalable,hobolth2009simulation,zechner2014scalable}
+
+
+\item EM with a sample average replacing the E-step expectation or similar \cite{gupta2014comparison,srivastava_rawlings2014stoch_opt,bayer2015stoch_em,horvath2008parameter,daigle2012accelerated}
+\end{itemize}
+
+
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Likelihood Free MCMC}
 
@@ -131,22 +181,21 @@ $$
 %.$$ or equivalently$$A{q(\theta^*|\theta)}{P(\theta|D)}={q(\theta|\theta^*)}  {P(\theta^*|D)}.$$ 
 
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Likelihood Free MCMC}
-
-Cast of Characters (\red{things DW can't evaluate are in red})
-\begin{itemize}
-\item ${P(\theta)}$
-\item \red{${P(x|\theta)}$}
-\item ${P(\mathcal{D}|x, \theta)}$
-\item \red{${P(x, \theta|\mathcal{D})}$} 
-\end{itemize}
-
-$$A=\frac{q(\theta,x|\theta^*,x^*)}{q(\theta^*,x^*|\theta,x)} \times \frac{P(\theta^*,x^*|\mathcal{D})}{P(\theta,x|\mathcal{D})}.$$ 
-
-Quote: ``Conditional on discrete-time observations, the Markov process breaks up into a collection of independent bridge processes that appear not to be analytically tractable.''
-
-\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{Likelihood Free MCMC}
+%
+%Cast of Characters (\red{things DW can't evaluate are in red})
+%\begin{itemize}
+%\item ${P(\theta)}$
+%\item \red{${P(x|\theta)}$}
+%\item ${P(\mathcal{D}|x, \theta)}$
+%\item \red{${P(x, \theta|\mathcal{D})}$} 
+%\end{itemize}
+%
+%$$A=\frac{q(\theta,x|\theta^*,x^*)}{q(\theta^*,x^*|\theta,x)} \times \frac{P(\theta^*,x^*|\mathcal{D})}{P(\theta,x|\mathcal{D})}.$$ 
+%
+%
+%\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Likelihood Free MCMC}
@@ -154,78 +203,145 @@ Quote: ``Conditional on discrete-time observations, the Markov process breaks up
 \begin{align*}
 &\frac{q(\theta^*, x^*|\theta, x)}{q(\theta, x|\theta^*, x^*)}
 \times 
-\red{\frac{P(x| \theta)}{P(x^*| \theta^*)}}
-\times 
-\frac{ P( \theta)}{ P( \theta^*)}
-\times 
+\red{\frac{P(x| \theta)}{P(x^*| \theta^*)}} 
+\frac{ P( \theta)}{ P( \theta^*)} 
 \frac{P(\mathcal{D}|x, \theta)}{P(\mathcal{D}|x^*, \theta^*)}\\
 &=\frac{f(\theta^*|\theta)}{f(\theta|\theta^*)}
-\times 
 \red{\frac{P(x^*| \theta^*)}{P(x| \theta)} }
 \times 
-\red{\frac{P(x| \theta)}{P(x^*| \theta^*)} }
-\times 
+\red{\frac{P(x| \theta)}{P(x^*| \theta^*)} } 
 \frac{ P( \theta)}{ P( \theta^*)}
-\times 
 \frac{P(\mathcal{D}|x, \theta)}{P(\mathcal{D}|x^*, \theta^*)}\\
 &=\frac{f(\theta^*|\theta)}{f(\theta|\theta^*)}
 \times 
-\frac{ P( \theta)}{ P( \theta^*)}
-\times 
+\frac{ P( \theta)}{ P( \theta^*)} 
 \frac{P(\mathcal{D}|x, \theta)}{P(\mathcal{D}|x^*, \theta^*)}.
 \end{align*}
-
+This approach due to Marjoram et al. (paper title: ``MCMC Without Likelihoods'') \cite{Marjoram23122003}. 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Sequential Importance Sampling}
-I learned about SIS here \cite{SMC_Doucet_Freitas_Gordon}.
-
-For (non-sequential) importance sampling, get $\int g(x, \theta)P(x, \theta|\mathcal{D})dx$ by doing this.
-\begin{itemize}
-\item draw $(x^{(i)}, \theta^{(i)})$ from $Q$
-\item compute $w^{(i)}=\frac{P(x^{(i)}, \theta^{(i)}|\mathcal{D})}{Q(x^{(i)}, \theta^{(i)})}$
-\item average out $\frac{\sum w^{(i)}g(x^{(i)}, \theta^{(i)})}{\sum w^{(i)}}$
-\end{itemize}
-
-Again, you need the ratios $\frac{P(x^{(i)}, \theta^{(i)})}{P(x^{(j)}, \theta^{(j)})} $ and
-$ \frac{Q(x^{(j)}, \theta^{(j)})}{Q(x^{(i)}, \theta^{(i)})}$.
-
+\begin{frame}{Likelihood Free Particle MCMC}
+\includegraphics[scale=0.35]{prior_sample_graphic.png}
 \end{frame}
+\begin{frame}{Likelihood Free Particle MCMC}
+\includegraphics[scale=0.35]{post_sample1_graphic.png}
+\end{frame}
+\begin{frame}{Likelihood Free Particle MCMC}
+\includegraphics[scale=0.35]{post_sample2_graphic.png}
+\end{frame}
+\begin{frame}{Likelihood Free Particle MCMC}
+\includegraphics[scale=0.35]{post_sample3_graphic.png}
+\end{frame}
+\begin{frame}{Likelihood Free Particle MCMC}
+\includegraphics[scale=0.35]{post_sample4_graphic.png}
+\end{frame}
+\begin{frame}{Likelihood Free Particle MCMC}
+\includegraphics[scale=0.35]{post_sample5_graphic.png}
+\end{frame}
+\begin{frame}{Likelihood Free Particle MCMC}
+\includegraphics[scale=0.35]{post_sample6_graphic.png}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Likelihood Free Particle MCMC}
+\begin{center}
+\includegraphics[scale=0.55]{insanity_wolf.jpg}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Likelihood Free Particle MCMC}
+
+\begin{algorithm}[H]
+Given a hidden continuous-time Markov process $\{x_t\}_{t=0}^T$ with: \\
+\Indp \Indp
+Unknown parameters $\theta$ and known initial state $x_0$\\
+Data points $\mathcal{D}_{t_{i}}$ at times $t_{i}$, $i \in \{1, ... I\}$ \\
+A simple, tractable error model $P(\mathcal{D}_{t_{i}}|x_{t_{i}}, \theta)$\\
+A simulator for paths of $x$ given $\theta$\\
+An array $B_0$ of 1,000,000 samples from a prior on $\theta, x_0$\\
+Empty arrays $B_{i}$ of the same length\\
+
+\Indm \Indm
+For each time point (for $i \in \{1, ... I\}$):\\
+\Indp\Indp
+Until $B_{i}$ is full: \\
+\Indp\Indp
+Draw $(\theta^*, x_{t_{i-1}}^*)$ from $B_{i-1}$ or a KDE of its contents\\
+Using $(\theta^*, x_{t_{i-1}}^*)$, simulate up to $x_{t_{i}}^*$, the state at time $t_{i}$ \\
+Set $A=\min(1, \frac{P(\mathcal{D}_{t_{i}}|x_{t_{i}}^*, \theta^*)}{P(\mathcal{D}_{t_{i}}|x_{t_{i}}, \theta)})$\\
+With probability $A$, overwrite $(\theta, x_{t_{i}})$ with $(\theta^*, x_{t_{i}}^*)$\\
+After burn-in and thinning, add $(\theta, x_{t_{i}})$ to $B_{i}$\\
+
+\end{algorithm}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Likelihood Free Particle MCMC}
+$$ \frac{P(x_{t_{i}}^*| x_{t_{i-1}}^*,\theta^*\red{, \mathcal{D}_{t_{i-1}}})}{P(x_{t_{i}}| x_{t_{i-1}}, \theta \red{, \mathcal{D}_{t_{i-1}}})} 
+\frac{P(x_{t_{i-1}}^*,\theta^*| \mathcal{D}_{t_{i-1}})}{P(x_{t_{i-1}}, \theta| \mathcal{D}_{t_{i-1}})}
+\times $$
+$$\frac{P(x_{t_{i}}| x_{t_{i-1}}, \theta \red{, \mathcal{D}_{t_{i-1}}})}{P(x_{t_{i}}^*| x_{t_{i-1}}^*,\theta^*\red{, \mathcal{D}_{t_{i-1}}})}
+\frac{ P(x_{t_{i-1}}, \theta| \mathcal{D}_{t_{i-1}})}{ P( x_{t_{i-1}}^*,\theta^*| \mathcal{D}_{t_{i-1}})}   
+\frac{P(\mathcal{D}_{t_{i}}|x_{t_{i}}, \theta)}{P(\mathcal{D}_{t_{i}}|x_{t_{i}}^*, \theta^*)}$$  
+\pause
+
+$${P(x_{t_{i}}| x_{t_{i-1}}, \theta \red{, \mathcal{D}_{t_{i-1}}})}
+{ P(x_{t_{i-1}}, \theta| \mathcal{D}_{t_{i-1}})}
+{P(\mathcal{D}_{t_{i}}|x_{t_{i}}, \theta)}$$ \\
+\pause
+$$={P(x_{t_{i}}, x_{t_{i-1}}, \theta |\red{ \mathcal{D}_{t_{i-1}}})}
+{P(\mathcal{D}_{t_{i}}|x_{t_{i}}, \theta, \red{ x_{t_{i-1}},\mathcal{D}_{t_{i-1}}})}$$ \\
+
+$$={P(x_{t_{i}}, x_{t_{i-1}}, \theta |\red{ \mathcal{D}_{t_{i}}})P( \mathcal{D}_{t_{i}}| \mathcal{D}_{t_{i-1}})}$$ \\
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{Sequential Importance Sampling}
+%I learned about SIS here \cite{SMC_Doucet_Freitas_Gordon}.
+%
+%For (non-sequential) importance sampling, get $\int g(x, \theta)P(x, \theta|\mathcal{D})dx$ by doing this.
+%\begin{itemize}
+%\item draw $(x^{(i)}, \theta^{(i)})$ from $Q$
+%\item compute $w^{(i)}=\frac{P(x^{(i)}, \theta^{(i)}|\mathcal{D})}{Q(x^{(i)}, \theta^{(i)})}$
+%\item average out $\frac{\sum w^{(i)}g(x^{(i)}, \theta^{(i)})}{\sum w^{(i)}}$
+%\end{itemize}
+%
+%Again, you need the ratios $\frac{P(x^{(i)}, \theta^{(i)})}{P(x^{(j)}, \theta^{(j)})} $ and
+%$ \frac{Q(x^{(j)}, \theta^{(j)})}{Q(x^{(i)}, \theta^{(i)})}$.
+%
+%\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Sequential Monte Carlo}
+%\begin{frame}{Sequential Monte Carlo}
+%
+%Importance sampling has low effective sample size when $Q$ is dis-similar to $P$. (The location and form of $g$ affects the variance also.)\\
+%
+%\only<1>{\includegraphics[scale=1]{tex_says_fuck_you.eps}}\\
 
-Importance sampling has low effective sample size when $Q$ is dis-similar to $P$. (The location and form of $g$ affects the variance also.)\\
 
-\only<1>{\includegraphics[scale=1]{tex_says_fuck_you.eps}}\\
-
-\footnote{The graphic on the following slides is from \cite{FinkeSMCslides}.}
-\end{frame}
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\setbeamercolor{background canvas}{bg=}
-\includepdf[pages=-]{wonderful_smc_graphic_export}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Sequential Monte Carlo}
-Given distributions $P_0, ... P_N$ such that $\frac{P_i(x, \theta)}{P_{i+1}(x, \theta)}$ is computable
-\begin{itemize}
-\item Sample from a tractable proposal. 
-\end{itemize}
-
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Likelihood-free Sequential Importance Sampling}
-
-From an earlier slide: "You need the ratios $\frac{P(x^{(i)}, \theta^{(i)})}{P(x^{(j)}, \theta^{(j)})} $ and
-$ \frac{Q(x^{(j)}, \theta^{(j)})}{Q(x^{(i)}, \theta^{(i)})}$." Not (quite) true.\\
-
-From the intro: "If you can't compute $\frac{P(x^{(i)}, \theta^{(i)})}{P(x^{(j)}, \theta^{(j)})} $, try to get the nasty part to appear in the proposal ratio."
-
-\end{frame}
+%\footnote{The graphic on the following slides is from \cite{FinkeSMCslides}.}
+%\setbeamercolor{background canvas}{bg=}
+%\includepdf[pages=-]{wonderful_smc_graphic_export}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{Sequential Monte Carlo}
+%Given distributions $P_0, ... P_N$ such that $\frac{P_i(x, \theta)}{P_{i+1}(x, \theta)}$ is computable
+%\begin{itemize}
+%\item Sample from a tractable proposal. 
+%\end{itemize}
+%
+%\end{frame}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{Likelihood-free Sequential Importance Sampling}
+%
+%From an earlier slide: "You need the ratios $\frac{P(x^{(i)}, \theta^{(i)})}{P(x^{(j)}, \theta^{(j)})} $ and
+%$ \frac{Q(x^{(j)}, \theta^{(j)})}{Q(x^{(i)}, \theta^{(i)})}$." Not (quite) true.\\
+%
+%From the intro: "If you can't compute $\frac{P(x^{(i)}, \theta^{(i)})}{P(x^{(j)}, \theta^{(j)})} $, try to get the nasty part to appear in the proposal ratio."
+%
+%\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\begin{frame}{}
@@ -238,12 +354,8 @@ From the intro: "If you can't compute $\frac{P(x^{(i)}, \theta^{(i)})}{P(x^{(j)}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Questions?}
-Wilkinson's paper is a chapter from this book:
-\bibliographystyle{splncs}
+\begin{frame}[allowframebreaks]{Questions?}
 \bibliography{prelim_biblio}
-
-
 \begin{center}
 
  %\includegraphics[ trim={0cm 0cm 0 0},clip, width = .75\textwidth]{nice_things.jpeg}

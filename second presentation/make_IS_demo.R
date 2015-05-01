@@ -1,4 +1,3 @@
-setwd('~/Dropbox/518/eric_writing/second presentation/')
 png('IS_plot.png')
 mygrid <- seq(-6, 10, by=0.1)
 plot(mygrid, dnorm(mygrid, mean=-2.5), type='l', 

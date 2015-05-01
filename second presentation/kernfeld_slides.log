@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  10 APR 2015 17:25
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  27 APR 2015 22:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -783,20 +783,63 @@ This is `epsf.tex' v2.7.4 <14 February 2011>
 \epsfxsize=\dimen196
 \epsfysize=\dimen197
 \pspoints=\dimen198
-) (/usr/local/texlive/2012/texmf-dist/tex/latex/algorithms/algorithm.sty
-Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
-nment
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+Package: algorithm2e 2008/00/00 v3.10 algorithms environments
+\c@AlgoLine=\count166
 
-(/usr/local/texlive/2012/texmf-dist/tex/latex/float/float.sty
-Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count166
-\float@exts=\toks40
-\float@box=\box79
-\@float@everytoks=\toks41
-\@floatcapt=\box80
+(/usr/local/texlive/2012/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2009/10/20 v1.13 Space after command names (DPC,MH)
 )
-\@float@every@algorithm=\toks42
-\c@algorithm=\count167
+(/usr/local/texlive/2012/texmf-dist/tex/latex/relsize/relsize.sty
+Package: relsize 2011/09/21 ver 4.0
+
+Examine \normalsize starts \@setfontsize size may be \@xiipt. 
+Examine \small starts \@setfontsize size may be \@xipt. 
+Examine \footnotesize starts \@setfontsize size may be \@xpt. 
+Examine \large starts \@setfontsize size may be \@xivpt. 
+Examine \Large starts \@setfontsize size may be \@xviipt. 
+Examine \LARGE starts \@setfontsize size may be \@xxpt. 
+Examine \scriptsize starts \@setfontsize size may be \@viiipt. 
+Examine \tiny starts \@setfontsize size may be \@vipt. 
+Examine \huge starts \@setfontsize size may be \@xxvpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+********************************************************
+Package `algorithm2e' Release 4.01 -- december 14 2009 --
+- algorithm2e-announce@lirmm.fr mailing list for announcement about releases
+- algorithm2e-discussion@lirmm.fr mailing list for discussion about package
+subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
+- Author: Christophe Fiorio (fiorio@lirmm.fr)
+********************************************************
+\skiptotal=\skip61
+\skiplinenumber=\skip62
+\skiprule=\skip63
+\skiphlne=\skip64
+\skiptext=\skip65
+\skiplength=\skip66
+\algomargin=\skip67
+\skipalgocfslide=\skip68
+\algowidth=\dimen199
+\inoutsize=\dimen200
+\inoutline=\dimen201
+\interspacetitleruled=\dimen202
+\interspacealgoruled=\dimen203
+\interspacetitleboxruled=\dimen204
+\algocf@inoutbox=\box79
+\algocf@inputbox=\box80
+\AlCapSkip=\skip69
+\AlCapHSkip=\skip70
+\algocf@nlbox=\box81
+\algocf@hangingbox=\box82
+\algocf@capbox=\box83
+\algoheightruledefault=\skip71
+\algoheightrule=\skip72
+\algotitleheightruledefault=\skip73
+\algotitleheightrule=\skip74
+\c@algocfline=\count167
+\c@algocfproc=\count168
+\c@algocf=\count169
+\algocf@algoframe=\box84
+\algocf@algobox=\box85
 )
 \@input{macrofile2a.aux}
 \openout2 = `macrofile2a.aux'.
@@ -807,29 +850,29 @@ Package: mathtools 2012/04/24 v1.12 mathematical typesetting tools
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count168
-\calc@Bcount=\count169
-\calc@Adimen=\dimen199
-\calc@Bdimen=\dimen200
-\calc@Askip=\skip61
-\calc@Bskip=\skip62
+\calc@Acount=\count170
+\calc@Bcount=\count171
+\calc@Adimen=\dimen205
+\calc@Bdimen=\dimen206
+\calc@Askip=\skip75
+\calc@Bskip=\skip76
 LaTeX Info: Redefining \setlength on input line 76.
 LaTeX Info: Redefining \addtolength on input line 77.
-\calc@Ccount=\count170
-\calc@Cskip=\skip63
+\calc@Ccount=\count172
+\calc@Cskip=\skip77
 )
 (/usr/local/texlive/2012/texmf-dist/tex/latex/mh/mhsetup.sty
 Package: mhsetup 2010/01/21 v1.2a programming setup (MH)
 )
-\g_MT_multlinerow_int=\count171
-\l_MT_multwidth_dim=\dimen201
-\origjot=\skip64
-\l_MT_shortvdotswithinadjustabove_dim=\dimen202
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen203
-\l_MT_above_intertext_dim=\dimen204
-\l_MT_below_intertext_dim=\dimen205
-\l_MT_above_shortintertext_dim=\dimen206
-\l_MT_below_shortintertext_dim=\dimen207
+\g_MT_multlinerow_int=\count173
+\l_MT_multwidth_dim=\dimen207
+\origjot=\skip78
+\l_MT_shortvdotswithinadjustabove_dim=\dimen208
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen209
+\l_MT_above_intertext_dim=\dimen210
+\l_MT_below_intertext_dim=\dimen211
+\l_MT_above_shortintertext_dim=\dimen212
+\l_MT_below_shortintertext_dim=\dimen213
 ))
 (/usr/local/texlive/2012/texmf-dist/tex/latex/beamer/themes/font/beamerfontthem
 estructurebold.sty
@@ -871,14 +914,11 @@ LaTeX Info: Redefining \bm on input line 204.
 )
 (/usr/local/texlive/2012/texmf-dist/tex/latex/paralist/paralist.sty
 Package: paralist 2002/03/18 v2.3b Extended list environments (BS)
-\pltopsep=\skip65
-\plpartopsep=\skip66
-\plitemsep=\skip67
-\plparsep=\skip68
-\pl@lab=\toks43
-)
-(/usr/local/texlive/2012/texmf-dist/tex/latex/tools/xspace.sty
-Package: xspace 2009/10/20 v1.13 Space after command names (DPC,MH)
+\pltopsep=\skip79
+\plpartopsep=\skip80
+\plitemsep=\skip81
+\plparsep=\skip82
+\pl@lab=\toks40
 )
 (/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/centernot.sty
 Package: centernot 2011/07/11 v1.3 Centers the not symbol horizontally (HO)
@@ -892,10 +932,10 @@ Package: eso-pic 2010/10/06 v2.0c eso-pic (RN)
 (/usr/local/texlive/2012/texmf-dist/tex/latex/pdfpages/pppdftex.def
 File: pppdftex.def 2012/04/03 v0.4s Pdfpages driver for pdfTeX (AM)
 )
-\AM@pagebox=\box81
-\AM@toc@title=\toks44
-\c@AM@survey=\count172
-\AM@templatesizebox=\box82
+\AM@pagebox=\box86
+\AM@toc@title=\toks41
+\c@AM@survey=\count174
+\AM@templatesizebox=\box87
 )
 (./kernfeld_slides.aux)
 \openout1 = `kernfeld_slides.aux'.
@@ -951,17 +991,17 @@ LaTeX Font Info:    ... okay on input line 88.
 
 (/usr/local/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count173
-\scratchdimen=\dimen208
-\scratchbox=\box83
-\nofMPsegments=\count174
-\nofMParguments=\count175
-\everyMPshowfont=\toks45
-\MPscratchCnt=\count176
-\MPscratchDim=\dimen209
-\MPnumerator=\count177
-\makeMPintoPDFobject=\count178
-\everyMPtoPDFconversion=\toks46
+\scratchcounter=\count175
+\scratchdimen=\dimen214
+\scratchbox=\box88
+\nofMPsegments=\count176
+\nofMParguments=\count177
+\everyMPshowfont=\toks42
+\MPscratchCnt=\count178
+\MPscratchDim=\dimen215
+\MPnumerator=\count179
+\makeMPintoPDFobject=\count180
+\everyMPtoPDFconversion=\toks43
 ) (/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -978,7 +1018,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 ABD: EveryShipout initializing macros
-\AtBeginShipoutBox=\box84
+\AtBeginShipoutBox=\box89
 Package hyperref Info: Link coloring OFF on input line 88.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/hyperref/nameref.sty
@@ -987,7 +1027,7 @@ Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
 (/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count179
+\c@section@level=\count181
 )
 LaTeX Info: Redefining \ref on input line 88.
 LaTeX Info: Redefining \pageref on input line 88.
@@ -1053,160 +1093,149 @@ LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
 {/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 [2
 
-] [3
+] <human_metabolism_kegg.png, id=40, 1325.95375pt x 790.955pt>
+File: human_metabolism_kegg.png Graphic file (type png)
 
-] [4
+<use human_metabolism_kegg.png>
+Package pdftex.def Info: human_metabolism_kegg.png used on input line 113.
+(pdftex.def)             Requested size: 331.48763pt x 197.73827pt.
+ [3
 
-] [5
+ <./human_metabolism_kegg.png>] [4
+
+]
+
+Package amsmath Warning: Foreign command \atopwithdelims;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 145.
+
+[5
 
 ] [6
 
 ] [7
 
+] [8
+
+] [9
+
+] [10
+
+] [11
+
+] [12
+
+] [13
+
+] [14
+
+] [15
+
+] [16
+
 ]
+<prior_sample_graphic.png, id=175, 468.3096pt x 539.1342pt>
+File: prior_sample_graphic.png Graphic file (type png)
 
-LaTeX Warning: File `tex_says_fuck_you.eps' not found on input line 206.
+<use prior_sample_graphic.png>
+Package pdftex.def Info: prior_sample_graphic.png used on input line 226.
+(pdftex.def)             Requested size: 163.91081pt x 188.6998pt.
+ [17
 
-Package epstopdf Info: Source file: <tex_says_fuck_you.eps>
-(epstopdf)             Output file: <tex_says_fuck_you-eps-converted-to.pdf>
-(epstopdf)             Command: <repstopdf --outfile=tex_says_fuck_you-eps-conv
-erted-to.pdf tex_says_fuck_you.eps>
-(epstopdf)             \includegraphics on input line 206.
-Package epstopdf Info: Output file is already uptodate.
+ <./prior_sample_graphic.png>]
+<post_sample1_graphic.png, id=183, 468.3096pt x 539.1342pt>
+File: post_sample1_graphic.png Graphic file (type png)
 
-! Package pdftex.def Error: File `tex_says_fuck_you-eps-converted-to.pdf' not f
-ound.
+<use post_sample1_graphic.png>
+Package pdftex.def Info: post_sample1_graphic.png used on input line 229.
+(pdftex.def)             Requested size: 163.91081pt x 188.6998pt.
+ [18
 
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.206 \end{frame}
-                 
-? 
-[8
+ <./post_sample1_graphic.png>]
+<post_sample2_graphic.png, id=191, 468.3096pt x 539.1342pt>
+File: post_sample2_graphic.png Graphic file (type png)
 
-] <wonderful_smc_graphic_export.pdf, id=96, page=1, 578.16pt x 433.62pt>
-File: wonderful_smc_graphic_export.pdf Graphic file (type pdf)
+<use post_sample2_graphic.png>
+Package pdftex.def Info: post_sample2_graphic.png used on input line 232.
+(pdftex.def)             Requested size: 163.91081pt x 188.6998pt.
+ [19
 
-<use wonderful_smc_graphic_export.pdf, page 1>
-Package pdftex.def Info: wonderful_smc_graphic_export.pdf, page1 used on input 
-line 209.
-(pdftex.def)             Requested size: 578.15858pt x 433.61894pt.
-File: wonderful_smc_graphic_export.pdf Graphic file (type pdf)
+ <./post_sample2_graphic.png>]
+<post_sample3_graphic.png, id=200, 468.3096pt x 539.1342pt>
+File: post_sample3_graphic.png Graphic file (type png)
 
-<use wonderful_smc_graphic_export.pdf, page 1>
-Package pdftex.def Info: wonderful_smc_graphic_export.pdf, page1 used on input 
-line 209.
-(pdftex.def)             Requested size: 364.28683pt x 273.21512pt.
-File: wonderful_smc_graphic_export.pdf Graphic file (type pdf)
+<use post_sample3_graphic.png>
+Package pdftex.def Info: post_sample3_graphic.png used on input line 235.
+(pdftex.def)             Requested size: 163.91081pt x 188.6998pt.
+ [20
 
-<use wonderful_smc_graphic_export.pdf, page 1>
-Package pdftex.def Info: wonderful_smc_graphic_export.pdf, page1 used on input 
-line 209.
-(pdftex.def)             Requested size: 364.28683pt x 273.21512pt.
-File: wonderful_smc_graphic_export.pdf Graphic file (type pdf)
+ <./post_sample3_graphic.png>]
+<post_sample4_graphic.png, id=208, 468.3096pt x 539.1342pt>
+File: post_sample4_graphic.png Graphic file (type png)
 
-<use wonderful_smc_graphic_export.pdf, page 1>
-Package pdftex.def Info: wonderful_smc_graphic_export.pdf, page1 used on input 
-line 209.
-(pdftex.def)             Requested size: 364.28683pt x 273.21512pt.
-File: wonderful_smc_graphic_export.pdf Graphic file (type pdf)
+<use post_sample4_graphic.png>
+Package pdftex.def Info: post_sample4_graphic.png used on input line 238.
+(pdftex.def)             Requested size: 163.91081pt x 188.6998pt.
+ [21
 
-<use wonderful_smc_graphic_export.pdf, page 1>
-Package pdftex.def Info: wonderful_smc_graphic_export.pdf, page1 used on input 
-line 209.
-(pdftex.def)             Requested size: 364.28683pt x 273.21512pt.
- [9
+ <./post_sample4_graphic.png>]
+<post_sample5_graphic.png, id=216, 686.565pt x 539.1342pt>
+File: post_sample5_graphic.png Graphic file (type png)
 
- <./wonderful_smc_graphic_export.pdf>]
-<wonderful_smc_graphic_export.pdf, id=171, page=2, 578.16pt x 433.62pt>
-File: wonderful_smc_graphic_export.pdf Graphic file (type pdf)
+<use post_sample5_graphic.png>
+Package pdftex.def Info: post_sample5_graphic.png used on input line 241.
+(pdftex.def)             Requested size: 240.30135pt x 188.6998pt.
+ [22
 
-<use wonderful_smc_graphic_export.pdf, page 2>
-Package pdftex.def Info: wonderful_smc_graphic_export.pdf, page2 used on input 
-line 209.
-(pdftex.def)             Requested size: 364.28683pt x 273.21512pt.
-File: wonderful_smc_graphic_export.pdf Graphic file (type pdf)
+ <./post_sample5_graphic.png>]
+<post_sample6_graphic.png, id=224, 686.565pt x 539.1342pt>
+File: post_sample6_graphic.png Graphic file (type png)
 
-<use wonderful_smc_graphic_export.pdf, page 2>
-Package pdftex.def Info: wonderful_smc_graphic_export.pdf, page2 used on input 
-line 209.
-(pdftex.def)             Requested size: 364.28683pt x 273.21512pt.
-File: wonderful_smc_graphic_export.pdf Graphic file (type pdf)
+<use post_sample6_graphic.png>
+Package pdftex.def Info: post_sample6_graphic.png used on input line 244.
+(pdftex.def)             Requested size: 240.30135pt x 188.6998pt.
+ [23
 
-<use wonderful_smc_graphic_export.pdf, page 2>
-Package pdftex.def Info: wonderful_smc_graphic_export.pdf, page2 used on input 
-line 209.
-(pdftex.def)             Requested size: 364.28683pt x 273.21512pt.
- [10 <./wonderful_smc_graphic_export.pdf>]
-<wonderful_smc_graphic_export.pdf, id=218, page=3, 578.16pt x 433.62pt>
-File: wonderful_smc_graphic_export.pdf Graphic file (type pdf)
+ <./post_sample6_graphic.png>]
+<insanity_wolf.jpg, id=232, 376.40625pt x 376.40625pt>
+File: insanity_wolf.jpg Graphic file (type jpg)
+ <use insanity_wolf.jpg>
+Package pdftex.def Info: insanity_wolf.jpg used on input line 250.
+(pdftex.def)             Requested size: 207.02406pt x 207.02406pt.
 
-<use wonderful_smc_graphic_export.pdf, page 3>
-Package pdftex.def Info: wonderful_smc_graphic_export.pdf, page3 used on input 
-line 209.
-(pdftex.def)             Requested size: 364.28683pt x 273.21512pt.
-File: wonderful_smc_graphic_export.pdf Graphic file (type pdf)
+[24
 
-<use wonderful_smc_graphic_export.pdf, page 3>
-Package pdftex.def Info: wonderful_smc_graphic_export.pdf, page3 used on input 
-line 209.
-(pdftex.def)             Requested size: 364.28683pt x 273.21512pt.
-File: wonderful_smc_graphic_export.pdf Graphic file (type pdf)
+ <./insanity_wolf.jpg>] [25
 
-<use wonderful_smc_graphic_export.pdf, page 3>
-Package pdftex.def Info: wonderful_smc_graphic_export.pdf, page3 used on input 
-line 209.
-(pdftex.def)             Requested size: 364.28683pt x 273.21512pt.
- [11 <./wonderful_smc_graphic_export.pdf>]
-<wonderful_smc_graphic_export.pdf, id=269, page=4, 578.16pt x 433.62pt>
-File: wonderful_smc_graphic_export.pdf Graphic file (type pdf)
+] [26
 
-<use wonderful_smc_graphic_export.pdf, page 4>
-Package pdftex.def Info: wonderful_smc_graphic_export.pdf, page4 used on input 
-line 209.
-(pdftex.def)             Requested size: 364.28683pt x 273.21512pt.
-File: wonderful_smc_graphic_export.pdf Graphic file (type pdf)
+] [27
 
-<use wonderful_smc_graphic_export.pdf, page 4>
-Package pdftex.def Info: wonderful_smc_graphic_export.pdf, page4 used on input 
-line 209.
-(pdftex.def)             Requested size: 364.28683pt x 273.21512pt.
-File: wonderful_smc_graphic_export.pdf Graphic file (type pdf)
+] [28
 
-<use wonderful_smc_graphic_export.pdf, page 4>
-Package pdftex.def Info: wonderful_smc_graphic_export.pdf, page4 used on input 
-line 209.
-(pdftex.def)             Requested size: 364.28683pt x 273.21512pt.
- [12 <./wonderful_smc_graphic_export.pdf>]
-<wonderful_smc_graphic_export.pdf, id=321, page=5, 578.16pt x 433.62pt>
-File: wonderful_smc_graphic_export.pdf Graphic file (type pdf)
-
-<use wonderful_smc_graphic_export.pdf, page 5>
-Package pdftex.def Info: wonderful_smc_graphic_export.pdf, page5 used on input 
-line 209.
-(pdftex.def)             Requested size: 364.28683pt x 273.21512pt.
-File: wonderful_smc_graphic_export.pdf Graphic file (type pdf)
-
-<use wonderful_smc_graphic_export.pdf, page 5>
-Package pdftex.def Info: wonderful_smc_graphic_export.pdf, page5 used on input 
-line 209.
-(pdftex.def)             Requested size: 364.28683pt x 273.21512pt.
-File: wonderful_smc_graphic_export.pdf Graphic file (type pdf)
-
-<use wonderful_smc_graphic_export.pdf, page 5>
-Package pdftex.def Info: wonderful_smc_graphic_export.pdf, page5 used on input 
-line 209.
-(pdftex.def)             Requested size: 364.28683pt x 273.21512pt.
- [13 <./wonderful_smc_graphic_export.pdf>] [14] (./kernfeld_slides.bbl)
-Overfull \vbox (11.6876pt too high) detected at line 247
- []
-
-[15
+] (./kernfeld_slides.bbl) [29
 
  </usr/local/texlive/2012/texmf-dist/tex/latex/beamer/art/beamericonarticle.pdf
 >]
+[30
+
+
+] [31
+
+
+] [32
+
+
+] [33
+
+
+] [34
+
+
+] [35
+
+
+]
 \tf@nav=\write6
 \openout6 = `kernfeld_slides.nav'.
 
@@ -1216,11 +1245,11 @@ Overfull \vbox (11.6876pt too high) detected at line 247
 \tf@snm=\write8
 \openout8 = `kernfeld_slides.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 250.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 250.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 366.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 366.
  (./kernfeld_slides.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 250.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 250.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 366.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 366.
 Package rerunfilecheck Info: File `kernfeld_slides.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
@@ -1231,38 +1260,33 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 250.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 366.
  ) 
 Here is how much of TeX's memory you used:
- 17817 strings out of 493488
- 329021 string characters out of 3141326
- 410213 words of memory out of 3000000
- 20616 multiletter control sequences out of 15000+200000
- 19303 words of font info for 73 fonts, out of 3000000 for 9000
+ 18897 strings out of 493488
+ 343735 string characters out of 3141326
+ 447586 words of memory out of 3000000
+ 21641 multiletter control sequences out of 15000+200000
+ 13161 words of font info for 49 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 49i,18n,57p,495b,510s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 49i,16n,57p,495b,510s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
-></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.
-pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.p
-fb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
-></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><
-/usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></u
-sr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/
-local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/loc
-al/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/loca
-l/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local
-/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/t
-exlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/
-texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/t
-exlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/tex
-live/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texl
-ive/2012/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/local/texlive/2012/t
-exmf-dist/fonts/type1/public/lm/lmss17.pfb></usr/local/texlive/2012/texmf-dist/
-fonts/type1/public/lm/lmss8.pfb>
-Output written on kernfeld_slides.pdf (15 pages, 775589 bytes).
+></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb>
+</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></
+usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></us
+r/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/
+local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/loc
+al/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/
+texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/t
+exlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/tex
+live/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/te
+xlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/tex
+live/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texli
+ve/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on kernfeld_slides.pdf (35 pages, 1447213 bytes).
 PDF statistics:
- 450 PDF objects out of 1000 (max. 8388607)
- 343 compressed objects within 4 object streams
- 29 named destinations out of 1000 (max. 500000)
- 102 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 377 PDF objects out of 1000 (max. 8388607)
+ 293 compressed objects within 3 object streams
+ 89 named destinations out of 1000 (max. 500000)
+ 112 words of extra memory for PDF output out of 10000 (max. 10000000)
 
