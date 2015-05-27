@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2012)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: kernfeld_wilkinson_summary_round2.aux
+The style file: splncs.bst
+Database file #1: prelim_biblio.bib
+You've used 22 entries,
+            2087 wiz_defined-function locations,
+            632 strings with 8337 characters,
+and the built_in function-call counts, 7266 in all, are:
+= -- 747
+> -- 251
+< -- 19
++ -- 91
+- -- 69
+* -- 537
+:= -- 943
+add.period$ -- 25
+call.type$ -- 22
+change.case$ -- 21
+chr.to.int$ -- 0
+cite$ -- 22
+duplicate$ -- 391
+empty$ -- 631
+format.name$ -- 69
+if$ -- 1751
+int.to.chr$ -- 0
+int.to.str$ -- 22
+missing$ -- 23
+newline$ -- 113
+num.names$ -- 22
+pop$ -- 49
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 285
+stack$ -- 0
+substring$ -- 550
+swap$ -- 240
+text.length$ -- 19
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 71
+width$ -- 24
+write$ -- 258
