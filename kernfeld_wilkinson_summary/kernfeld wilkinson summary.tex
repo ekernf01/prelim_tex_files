@@ -78,6 +78,9 @@ In this paper, Wilkinson attempts to infer reaction rates for biochemical networ
 I review some alternative methods in detail and discuss the relative merits of W09's approach. I implement the method in Julia and attempt to reproduce the experiments \EMK{more on this later!}. I assess the method using additional experiments designed to study mixing time, scaling with system size, and prior sensitivity \EMK{more on this later!}. 
 \end{abstract}
 
+\tableofcontents
+\newpage
+
 
 \section{Introduction: Parameter Inference for Biological Models}
 
@@ -126,8 +129,9 @@ Returning to the likelihood, suppose $\nu$ is a vector so that the $i$th reactio
 
 In terms of maximum likelihood inference, this function and its derivatives can be evaluated. In terms of Bayesian inference, it has a conjugate prior (independent Gamma distributions). Computational scale is not an issue: Wilkinson's examples have only 13 molecule types and 18 reactions. The problem arises because of discretely observed data.
 
-\subsection{Approaching inference without complete data}
+\section{Approaching inference without complete data}
 \label{sec:intro_em}
+
 In Wilkinson's data, not every reaction is observed. Rather, measurements of molecule counts are taken every five minutes. Many possible sequences of reactions could have resulted in the same observations (infinitely many, counting production-decay or binding-unbinding loops). For each sequence, uncountably many variations exist: consider stretching or shrinking the wait times. Let $\nu$ range over the set of eligible reaction sequences, meaning it matches the observed data. Let $\Omega_{\nu}$ be the set of possible times for reactions in $\nu$. The likelihood becomes 
 \begin{equation}\label{eqn_nasty_lik}
 L(c|X(0), X(t_1), ... X(T)) =\sum_{\nu}\int_{t\in \Omega_{\nu}} \prod_{i=1}^n c_{\nu_{i}} \prod_{j=1}^u {{X_{j}(t_{i-1})}\choose{p_{{\nu_{i}}j}}}\exp\left(-c_{\nu_{i}}\sum_{i=1}^{n} (t_{i}-t_{i-1}) {{X_j(t_{i})}\choose{p_{{\nu_{i}}j}}}\right).
@@ -179,7 +183,7 @@ A big array $B_0$ (Wilkinson uses length 1,000,000) of samples from a prior on $
 Empty arrays $B_{i}$ of the same length\\
 $\phantom{0}$\\
 \Indm \Indm
-For each time point (for $i \in \{1, ... I\}$), fill $B_{i}$ with samples from this Metropolis Hastings scheme:\\
+For each time point (for $i \in \{1, ... I\}$), fill $B_{i}$ with samples from this Metropolis-Hastings scheme:\\
 \Indp\Indp
 Initialize $(\theta, x_{t_{i}})$ \\
 Until $B_{i}$ is full: \\
@@ -201,9 +205,27 @@ $$ \frac{P(x_{t_{i}}^*| x_{t_{i-1}}^*,\theta^*\gray{, \mathcal{D}_{t_{i-1}}})}{P
 \frac{P(\mathcal{D}_{t_{i}}|x_{t_{i}}, \theta)}{P(\mathcal{D}_{t_{i}}|x_{t_{i}}^*, \theta^*)}.$$   
 This shows how the compact form in Algorithm \ref{pMCMC} arises. Notice the gray terms: the hidden Markov model would allow us to include or omit them at will. This is key: otherwise the proposal, which is not conditioned on the data due to the difficulty of endpoint-conditioned simulation, would not cancel the intractable likelihood term, which conditions on the data. %Note that using a KDE does not affect the ratio, because usually the kernel $K(\cdot|\cdot)$ is symmetric, so the extra term $\frac{K(\theta^*|\theta)}{K(\theta|\theta^*)}$ is just $1$.
 
-\subsection{Strong Points, Potential Flaws, and Experiments}
+\section{Alternatives, Potential Flaws, and Experiments}
+\subsection{Replication and problems with sample impoverishment}
+
+\subsubsection{Sample impoverishment}
+Sequential MCMC suffers from a problem termed sample impoverishment, which means that eventually most samples are duplicates of a common ancestor and few unique values remain. Plots of results even with 1,000,000 samples seem to display this issue \EMK{Add a figure here?}. While writing about other work, I found that Wilkinson himself, with lead author Andrew Golightly, makes this criticism when describing W09 in a later paper \cite{golightly2011bayesian}. 
+
+This warrants a brief analysis. Wilkinson records the first of every five samples for use in the next stage's proposal. Ten rejections in a row thus guarantees a repeat. Taking the empirical rejection rates from a trial run with 100,000 particles and taking each to the tenth power gives convervative estimates of the rate of 10-rejections-in-a-row, as if the trials were independent. This seems charitable: they could be correlated, since any small string of rejections signals a desirable starting point and perhaps more rejections to come. Converting these to rates of at-least-one-acceptance-after-10-rounds, we get proportions $p_i$ such that $N$ unique particles before stage $i$ will result in about $Np_i$ unique particles after stage $i$. Multiplying the stages together, the result is about 0.0003. So, being charitable, I would expect the final sample to have about 3 unique values for every 10,000 in the prior sample. \EMK{Re-do the calculations to describe the same million-sample test for which you have a figure. How can this be made transparent/reproducible? Providing code?}
+
+In fact, this treats the method too kindly for another reason: I would expect some more repeats to arise because the proposal distribution will begin to contain repeats. When proposed, these might be more likely to be accepted, as they were already selected to be plausible values. 
+
+\paragraph{Solutions to sample impoverishment}
+Interestingly, the highest rejection rates are concentrated in the first couple of rounds, when moving between $P(\theta)$ and $P(\theta|d_{t_1})$ and $P(\theta|d_{t_1}, d_{t_2})$. This suggests a simple adaptation: spend more effort in the first round, perhaps by thinning more aggressively.
+
+Another solution to this problem is to sample from a KDE of the previous distribution, rather than just resampling. Wilkinson mentions using a KDE instead of straight resampling, but he does not explain how important it is, and he does not mention any of the literature (for example \cite{particle_filter_tutorial}) that helps explain why and how to carry out a KDE in this setting.  Using a KDE renders the method no longer exact, but according to \cite{particle_filter_tutorial}, it works better than no KDE. %The paper \cite{particle_filter_tutorial} also gives a rule for bandwidth selection. 
+Unfortunately, using a KDE in log-space with a normal kernel, sd of 0.05, yields a small cloud, centered tightly in the wrong place. This is not a genuine improvement over a point-mass posterior estimate. \EMK{Write more here once results of KDE tests are in.}
+
+
+\subsection{Potential flaws of the method and extensions to experiments}
+
 \subsubsection{Computing time}
-Wilkinson's example lies at a scale tailored to custom experiments with far fewer molecules and reactions than the whole-cell efforts cited earlier. The entire system describes only 13 molecules and 18 reactions. Still, for a synthetic time-series spanning 24 measurements over two hours, my Julia-language implementation of the method takes about two hours to run. As opposed to Matlab or R, Julia is designed to offer fast performance to mimic that of a statically typed language. The implementation has been optimized using the Julia \texttt{@profile} macro, though it could likely be done more quickly by taking advantage of sparsity in the stoichiometry matrix. Wilkinson also notes computation time as an area for improvement, particularly when processing data from entire batches of cells undergoing the same experiment.
+Wilkinson's example lies at a scale tailored to custom experiments with far fewer molecules and reactions than the whole-cell efforts cited earlier. The entire system describes only 13 molecules and 18 reactions. The experiments use a synthetic time-series with only 24 measurements. Attempting to replicate these results using Wilkinson's priors, my Julia-language implementation of the method takes about one day to run. As opposed to Matlab or R, Julia offers fast performance, including loops, to mimic that of a statically typed language. The implementation has been optimized using the Julia \texttt{@profile} macro, though it could likely be done more quickly by taking advantage of sparsity in the stoichiometry matrix. Wilkinson also notes computation time as an area for improvement, particularly when processing data from entire batches of cells undergoing the same experiment.
 
 \subsubsection{Modeling error}
 All of Wilkinson's experiments use synthetic data, generated from the correct model. Having neglected all but the most important chemicals, Wilkinson bears the burden of showing that modeling error in this pint-size (more accurately, cubic-nanometer-size) model is not too great. The model is an upper bound on the accuracy of the method, because even if better models exist, the method is not useful for systems that go up to \EMK{figure this out with little runs}. Wilkinson stresses that much more information about his example network is available than is used, but offers no citations to show \EMK{Look for papers on this!} that his reduction works well.
@@ -211,32 +233,6 @@ All of Wilkinson's experiments use synthetic data, generated from the correct mo
 \subsubsection{Mixing time}
 Wilkinson discards 1000 samples as a burn-in at every stage of the sampler. Is this sufficient? He offers experiments showing scenarios where the method does or doesn't give good results, but he never addresses this concern about whether it is working properly, not even via citation or theoretical mixing time analysis. Meanwhile, other authors describe discarding far more of their samples as a burn-in, between 10 and 50 percent \cite{gupta2014comparison,zechner2014scalable}.  \EMK{Design experiments to confront this. Simple conjugate posterior? Discordant results between multiple runs?}
 
-\subsubsection{Sample impoverishment}
-Sequential MCMC suffers from a problem termed sample impoverishment, which means that eventually most samples are duplicates of a common ancestor and few unique values remain. Wilkinson records the first of every five samples for use in the next stage's proposal. Ten rejections in a row thus guarantees a repeat. %The empirical rejection rate stays above 0.9. The chance of ten in a row would be at least $0.9^10 \approx 0.348$, 
-%If the rejection rate is 0.9, the chance of ten in a row would be at least $0.9^10 \approx 0.348$, 
-Taking the empirical rejection rates from a trial run with 100,000 particles and taking each to the tenth power gives convervative estimates of the rate of 10-rejections-in-a-row, as if the trials were independent. They could be correlated, since any small string of rejections signals a desirable starting point and perhaps more rejections to come. Converting these to rates of at-least-one-acceptance-after-10-rounds, and multiplying together, the result is about 0.0003. So, being charitable, I would expect the final sample to have about 3 unique values for every 10,000 in the prior sample.
-%Thus, each round of Metropolis-Hastings, assuming the only source of repeats is rejection events and that successive rejections are independent, might reduce the number of unique particles down to about $100-35 = 65$\% of where it started. In a dataset with 24 time-points, this would lead the initial sample to collapse down to a few hundred thousandths of where it started, since $0.65^{24}\approx 3.2\times 10^{-5}$. 
-I would expect some more repeats to arise because the proposal distribution will begin to contain repeats, and when proposed, these might be more likely to be accepted, as they were already selected to be plausible values. Indeed, runs with only 10,000 or 1,000 particles invariably produce a point-mass rather than a reliable posterior estimate. Even runs with 100,000 particles have the same problem. The high rejection rates are concentrated in the first couple of rounds, when moving between $P(\theta)$ and $P(\theta|d_{t_1})$ and $P(\theta|d_{t_1}, d_{t_2})$. 
-
-One solution to this problem is to sample from a KDE of the previous distribution. Wilkinson mentions using a KDE instead of straight resampling, but he does not explain how important it is, and he does not mention any of the literature (for example \cite{particle_filter_tutorial}) that helps explain why and how to carry out a KDE in this setting.  Using a KDE renders the method no longer exact, but according to \cite{particle_filter_tutorial}, it works better than no KDE. %The paper \cite{particle_filter_tutorial} also gives a rule for bandwidth selection. 
-Unfortunately, using a KDE in log-space with a normal kernel, sd of 0.05, yields a small cloud, centered tightly in the wrong place. This is not a genuine improvement over a point-mass posterior estimate. While writing about other work, I found that Wilkinson himself, with lead author Andrew Golightly, makes this criticism in a later paper \cite{golightly2011bayesian}. 
-
-To document this criticism fully, Figure \ref{fig:SigD_trial_may27} shows the posterior distribution over two unknown rates from a replicate of one of W09's experiments. In the synthetic data, twenty-four observations occurred at intervals of 300 seconds, with a noise sd of 10.0. There were 1000000 particles, with true rates and log-uniform priors matching Wilkinson's
-%: \log(kSigDprod) ∼ Unif(\log\{0.01\}, \log\{100\}),\log(kflacherep) ∼ Unif(\log\{0.0002\}, \log\{2\}),\log(kflacheunrep) ∼ Unif(\log\{0.001\}, log\{10\})
-. The acceptance rate in the first round was 2 percent, but it ranged between 25 and 95 percent thereafter. It took about one day to run. 
-
-Though the posterior is scattered around the true value, the plot indicates few unique particles persisting to the final round. \EMK{The plot was constructed by subsampling: of the million samples appearing in the final round, 1000 appear in the plot. Thus, the situation may not be as bad as it looks. I hope to improve the plot in the next draft. Another item worthy of note: Wilkinson's logs are base $e$, while mine are base 10.}
-
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[height=2in,width=4in]{wilkinson_fig3_biv.png}
-\includegraphics[height=4in,width=4in]{SigD_trial_may27.png}
-\caption{Bivariate marginal of the posterior from Wilkinson's figure 3 (top) and my replication (bottom).}
-\end{center}
-\label{fig:SigD_trial_may27}
-\end{figure}
-
-%Some authors mention another method to maintain particle diversity: applying a different MCMC step whose kernel leaves the target invariant (see supplemental information of \cite{zechner2014scalable}). It is not clear that this applies
 
 \subsubsection{Flexibility}
 Wilkinson's approach is wonderfully adaptable. On the surface, Marjoram et al.'s LF-MCMC makes no HMM assumption and so is more flexible, but Wilkinson claims convincingly that LF-MCMC does not mix properly in this setting. The technique of constructing intermediate distributions by adding one datum at a time would generalize to any hidden Markov model, and coupled with the likelihood-free approach, this allows tremendous flexibility for indirect observation of stochastic and/or nonlinear systems. Adaptation for different types of observation (for example, a fluorescent protein instead of the protein of interest) is simple. Wilkinson points out that posteriors could be fed straight back into the algorithm as priors to analyze a second dataset, and this approach allows for analysis of different models that share parameters.
