@@ -12,6 +12,17 @@ Reinker, S., Altman, R., Timmer, J.:
 \newblock Parameter estimation in stochastic biochemical reactions.
 \newblock IEE Proceedings-Systems Biology \textbf{153}(4) (2006)  168--178
 
+\bibitem{gillespie1992rigorous}
+Gillespie, D.T.:
+\newblock A rigorous derivation of the chemical master equation.
+\newblock Physica A: Statistical Mechanics and its Applications \textbf{188}(1)
+  (1992)  404--425
+
+\bibitem{gillespie1977}
+Gillespie, D.T.:
+\newblock Exact stochastic simulation of coupled chemical reactions.
+\newblock The Journal of Physical Chemistry \textbf{81}(25) (1977)  2340--2361
+
 \bibitem{horvath2008parameter}
 Horv{\'a}th, A., Manini, D.:
 \newblock Parameter estimation of kinetic rates in stochastic reaction networks
@@ -43,6 +54,19 @@ Marjoram, P., Molitor, J., Plagnol, V., Tavar{\'e}, S.:
 \newblock Proceedings of the National Academy of Sciences \textbf{100}(26)
   (2003)  15324--15328
 
+\bibitem{golightly2011bayesian}
+Golightly, A., Wilkinson, D.J.:
+\newblock Bayesian parameter inference for stochastic biochemical network
+  models using particle markov chain monte carlo.
+\newblock Interface focus (2011)  rsfs20110047
+
+\bibitem{particle_filter_tutorial}
+Arulampalam, M., Maskell, S., Gordon, N., Clapp, T.:
+\newblock A tutorial on particle filters for online nonlinear/non-gaussian
+  bayesian tracking.
+\newblock Signal Processing, IEEE Transactions on \textbf{50}(2) (Feb 2002)
+  174--188
+
 \bibitem{gupta2014comparison}
 Gupta, A., Rawlings, J.B.:
 \newblock Comparison of parameter estimation methods in stochastic chemical
@@ -61,6 +85,12 @@ Milner, P., Gillespie, C.S., Wilkinson, D.J.:
   models.
 \newblock Statistics and Computing \textbf{23}(2) (2013)  287--295
 
+\bibitem{kugler2012moment}
+K{\"u}gler, P.:
+\newblock Moment fitting for parameter inference in repeatedly and partially
+  observed stochastic biological models.
+\newblock PloS one \textbf{7}(8) (2012)  e43001
+
 \bibitem{zechner2012moment}
 Zechner, C., Ruess, J., Krenn, P., Pelet, S., Peter, M., Lygeros, J., Koeppl,
   H.:
@@ -68,6 +98,12 @@ Zechner, C., Ruess, J., Krenn, P., Pelet, S., Peter, M., Lygeros, J., Koeppl,
   expression.
 \newblock Proceedings of the National Academy of Sciences \textbf{109}(21)
   (2012)  8340--8345
+
+\bibitem{Milner201199}
+Milner, P., Gillespie, C.S., Wilkinson, D.J.:
+\newblock Moment closure approximations for stochastic kinetic models with
+  rational rate laws.
+\newblock Mathematical Biosciences \textbf{231}(2) (2011)  99 -- 104
 
 \bibitem{opper2008variational}
 Opper, M., Sanguinetti, G.:
@@ -81,17 +117,17 @@ Srivastava, R., Rawlings, J.B.:
   derivative free optimization and bootstrapping.
 \newblock Computers \& chemical engineering \textbf{63} (2014)  152--158
 
+\bibitem{andrieu2010particle}
+Andrieu, C., Doucet, A., Holenstein, R.:
+\newblock Particle markov chain monte carlo methods.
+\newblock Journal of the Royal Statistical Society: Series B (Statistical
+  Methodology) \textbf{72}(3) (2010)  269--342
+
 \bibitem{golightly2005bayesian}
 Golightly, A., Wilkinson, D.J.:
 \newblock Bayesian inference for stochastic kinetic models using a diffusion
   approximation.
 \newblock Biometrics \textbf{61}(3) (2005)  781--788
-
-\bibitem{bayes_stoch_mod}
-Golightly, A., Wilkinson, D.J.a.:
-\newblock Bayesian parameter inference for stochastic biochemical network
-  models using particle markov chain monte carlo.
-\newblock Interface Focus \textbf{1}(6) (10 2011)  807--820
 
 \bibitem{fearnhead2014inference}
 Fearnhead, P., Giagos, V., Sherlock, C.:
@@ -102,6 +138,12 @@ Fearnhead, P., Giagos, V., Sherlock, C.:
 Owen, J., Wilkinson, D.J., Gillespie, C.S.:
 \newblock Likelihood free inference for markov processes: a comparison.
 \newblock arXiv preprint arXiv:1410.0524 (2014)
+
+\bibitem{amrein2012rate}
+Amrein, M., K{\"u}nsch, H.R.:
+\newblock Rate estimation in partially observed markov jump processes with
+  measurement errors.
+\newblock Statistics and Computing \textbf{22}(2) (2012)  513--526
 
 \bibitem{owen2014scalable}
 Owen, J., Wilkinson, D.J., Gillespie, C.S.:

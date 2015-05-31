@@ -5,13 +5,18 @@
 \contentsline {subsection}{\numberline {2.1}Methods similar to Wilkinson's}{4}
 \contentsline {subsection}{\numberline {2.2}Inference via Wilkinson's method}{5}
 \contentsline {section}{\numberline {3}Alternatives, Potential Flaws, and Experiments}{6}
-\contentsline {subsection}{\numberline {3.1}Replication and problems with sample impoverishment}{6}
-\contentsline {subsubsection}{\numberline {3.1.1}Sample impoverishment}{6}
+\contentsline {subsection}{\numberline {3.1}Replication results}{6}
+\contentsline {subsection}{\numberline {3.2}Replication and problems with sample impoverishment}{6}
+\contentsline {subsubsection}{\numberline {3.2.1}Sample impoverishment}{6}
 \contentsline {paragraph}{Solutions to sample impoverishment}{8}
-\contentsline {subsection}{\numberline {3.2}Potential flaws of the method and extensions to experiments}{8}
-\contentsline {subsubsection}{\numberline {3.2.1}Computing time}{8}
-\contentsline {subsubsection}{\numberline {3.2.2}Modeling error}{8}
-\contentsline {subsubsection}{\numberline {3.2.3}Mixing time}{8}
-\contentsline {subsubsection}{\numberline {3.2.4}Flexibility}{8}
-\contentsline {subsubsection}{\numberline {3.2.5}Prior Selection}{9}
-\contentsline {subsection}{\numberline {3.3}Alternative Methods}{9}
+\contentsline {subsection}{\numberline {3.3}Potential flaws of the method and extensions to experiments}{8}
+\contentsline {subsubsection}{\numberline {3.3.1}Computing time}{8}
+\contentsline {subsubsection}{\numberline {3.3.2}Modeling error}{8}
+\contentsline {subsubsection}{\numberline {3.3.3}Mixing time}{9}
+\contentsline {subsubsection}{\numberline {3.3.4}Flexibility}{9}
+\contentsline {subsubsection}{\numberline {3.3.5}Prior Selection}{9}
+\contentsline {subsection}{\numberline {3.4}Alternative Methods}{9}
+\contentsline {subsubsection}{\numberline {3.4.1}Moment closure}{9}
+\contentsline {subsubsection}{\numberline {3.4.2}Variational inference}{10}
+\contentsline {subsubsection}{\numberline {3.4.3}Maximum \textit {\textbf { a posteriori}} inference}{10}
+\contentsline {subsubsection}{\numberline {3.4.4}Bayesian inference via MCMC}{10}
