@@ -77,7 +77,7 @@
 
 % Title Page Stuff
 % Title Page Stuff
-\title[Likelihood-free MCMC]{Parameter inference for small biochemical systems}
+\title[Likelihood-free MCMC]{Parameter inference for small biochemical systems using likelihood-free MCMC}
 \author[Eric Kernfeld]{ {Eric Kernfeld}\inst{1}}
 \institute[University of Washington]
 { \inst{1}%
@@ -104,44 +104,33 @@ University of Washington Department of Statistics}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Paper}
-Darren Wilkinson's ``Parameter inference for stochastic kinetic models of bacterial gene regulation,'' a book chapter in \cite{Bernardo2012}.
+Darren Wilkinson's ``Parameter inference for stochastic kinetic models of bacterial gene regulation,'' a chapter of the proceedings in \cite{Bernardo2012}.
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Problem}
-\includegraphics[scale=0.25]{human_metabolism_kegg.png}
-\end{frame}
+%\begin{frame}{Problem}
+%\includegraphics[scale=0.25]{human_metabolism_kegg.png}
+%\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Problem}
 
 Cast of Characters 
 \begin{itemize}
-\item $r_j$ is a customer behavior pattern in a restaurant.
-\item $R_j(t)$ counts occurrences of $r_j$ up to time $t$.
-\item $c_j$ is the rate at which $r_j$ happens.
-\item $X(t)$ is the restaurant state: customers, orders, cash register. 
-\item $\mathcal{D}_t$ is an incomplete observation of $X(t)$ with error.
-\item $\tau$ governs measurement error.
-\item $\theta$ is $\tau$ and $c$ together.
+\item Simulation begins at time $0$ and proceeds in continuous time.
+\item $\mathcal{R}_j$ is a chemical reaction.
+\item $R_j(t) \in \mathbb{Z}_{\geq 0}$ counts occurrences of $\mathcal{R}_j$ up to time $t$.
+\item $\theta_j\in \mathbb{R}_{\geq 0}$ is the rate at which $\mathcal{R}_j$ happens. More on this in future slides.
+\item $X_i(t)  \in \mathbb{Z}_{\geq 0}$ is the number of molecules of type $i$
+\item $\mathcal{D}_t \in \mathbb{R}$ is an incomplete observation of $X(t)$ with error.
 \end{itemize}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Problem}
-
-$r_1$: 2 customers, hotcakes $\xrightarrow{c_1}$ 2 customers, 2 hotcakes, +\$5.65 \\
-\pause
-$$R_1(t)\sim PP(c_1{X_1(t)\choose2}{X_2(t)\choose1})$$
-\pause
-$r_2$: no prereqs $\xrightarrow{c_2}$ 1 customer\\
-\pause
-$$R_1(t)\sim PP(c_2)$$
-\pause
-$r_2$: sick customer, healthy customer, hotcakes $\xrightarrow{c_3}$ 2 sick customers\\
-\pause
-$$R_3(t)\sim PP(c_3{X_1(t)\choose1}{X_2(t)\choose1}{X_3(t)\choose1})$$
-Assume pattern $r_j$ occurs independently of other patterns except when the contents of the restaurant changes.
+\includegraphics[scale=0.35]{stoich_fig.png}
+$$R_3(t)\sim PP(\theta_3{X_1(t)\choose1}{X_2(t)\choose1}{X_3(t)\choose1})$$
+Assume reaction $\mathcal{R}_j$ occurs independently of other patterns except when the contents of the system changes.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Problem}

@@ -3,44 +3,46 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: kernfeld wilkinson summary.aux
 The style file: splncs.bst
 Database file #1: prelim_biblio.bib
+Warning--empty title in wilk_email
 You've used 26 entries,
             2087 wiz_defined-function locations,
-            661 strings with 8814 characters,
-and the built_in function-call counts, 8767 in all, are:
-= -- 910
-> -- 283
-< -- 23
-+ -- 104
-- -- 78
-* -- 625
-:= -- 1114
+            657 strings with 8647 characters,
+and the built_in function-call counts, 8532 in all, are:
+= -- 884
+> -- 273
+< -- 22
++ -- 101
+- -- 75
+* -- 602
+:= -- 1086
 add.period$ -- 29
 call.type$ -- 26
-change.case$ -- 25
+change.case$ -- 24
 chr.to.int$ -- 0
-cite$ -- 26
-duplicate$ -- 489
-empty$ -- 756
-format.name$ -- 78
-if$ -- 2135
+cite$ -- 27
+duplicate$ -- 476
+empty$ -- 744
+format.name$ -- 75
+if$ -- 2076
 int.to.chr$ -- 0
 int.to.str$ -- 26
-missing$ -- 27
-newline$ -- 133
+missing$ -- 26
+newline$ -- 132
 num.names$ -- 26
-pop$ -- 56
+pop$ -- 61
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 377
+skip$ -- 366
 stack$ -- 0
-substring$ -- 670
-swap$ -- 312
-text.length$ -- 23
+substring$ -- 642
+swap$ -- 300
+text.length$ -- 22
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
-while$ -- 82
+warning$ -- 1
+while$ -- 80
 width$ -- 28
-write$ -- 305
+write$ -- 301
+(There was 1 warning)

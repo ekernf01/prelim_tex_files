@@ -60,12 +60,9 @@ Golightly, A., Wilkinson, D.J.:
   models using particle markov chain monte carlo.
 \newblock Interface focus (2011)  rsfs20110047
 
-\bibitem{particle_filter_tutorial}
-Arulampalam, M., Maskell, S., Gordon, N., Clapp, T.:
-\newblock A tutorial on particle filters for online nonlinear/non-gaussian
-  bayesian tracking.
-\newblock Signal Processing, IEEE Transactions on \textbf{50}(2) (Feb 2002)
-  174--188
+\bibitem{wilk_email}
+Wilkinson, D.J.
+\newblock Personal communication ({MAY} 2015)
 
 \bibitem{gupta2014comparison}
 Gupta, A., Rawlings, J.B.:
@@ -123,6 +120,16 @@ Andrieu, C., Doucet, A., Holenstein, R.:
 \newblock Journal of the Royal Statistical Society: Series B (Statistical
   Methodology) \textbf{72}(3) (2010)  269--342
 
+\bibitem{owen2014scalable}
+Owen, J., Wilkinson, D.J., Gillespie, C.S.:
+\newblock Scalable inference for markov processes with intractable likelihoods.
+\newblock Statistics and Computing (2014)  1--12
+
+\bibitem{owen2014ABC_LF-MCMCcomparison}
+Owen, J., Wilkinson, D.J., Gillespie, C.S.:
+\newblock Likelihood free inference for markov processes: a comparison.
+\newblock arXiv preprint arXiv:1410.0524 (2014)
+
 \bibitem{golightly2005bayesian}
 Golightly, A., Wilkinson, D.J.:
 \newblock Bayesian inference for stochastic kinetic models using a diffusion
@@ -134,26 +141,16 @@ Fearnhead, P., Giagos, V., Sherlock, C.:
 \newblock Inference for reaction networks using the linear noise approximation.
 \newblock Biometrics \textbf{70}(2) (2014)  457--466
 
-\bibitem{owen2014ABC_LF-MCMCcomparison}
-Owen, J., Wilkinson, D.J., Gillespie, C.S.:
-\newblock Likelihood free inference for markov processes: a comparison.
-\newblock arXiv preprint arXiv:1410.0524 (2014)
+\bibitem{golightly2014smc_b_subtilis}
+Golightly, A., Wilkinson, D.J.:
+\newblock Bayesian inference for markov jump processes with informative
+  observations.
+\newblock Statistical Applications in Genetics and Molecular Biology (2014)
 
 \bibitem{amrein2012rate}
 Amrein, M., K{\"u}nsch, H.R.:
 \newblock Rate estimation in partially observed markov jump processes with
   measurement errors.
 \newblock Statistics and Computing \textbf{22}(2) (2012)  513--526
-
-\bibitem{owen2014scalable}
-Owen, J., Wilkinson, D.J., Gillespie, C.S.:
-\newblock Scalable inference for markov processes with intractable likelihoods.
-\newblock Statistics and Computing (2014)  1--12
-
-\bibitem{golightly2014smc_b_subtilis}
-Golightly, A., Wilkinson, D.J.:
-\newblock Bayesian inference for markov jump processes with informative
-  observations.
-\newblock Statistical Applications in Genetics and Molecular Biology (2014)
 
 \end{thebibliography}

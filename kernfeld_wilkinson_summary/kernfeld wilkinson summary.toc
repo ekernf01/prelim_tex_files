@@ -4,19 +4,22 @@
 \contentsline {section}{\numberline {2}Approaching inference without complete data}{3}
 \contentsline {subsection}{\numberline {2.1}Methods similar to Wilkinson's}{4}
 \contentsline {subsection}{\numberline {2.2}Inference via Wilkinson's method}{5}
-\contentsline {section}{\numberline {3}Alternatives, Potential Flaws, and Experiments}{6}
-\contentsline {subsection}{\numberline {3.1}Replication results}{6}
-\contentsline {subsection}{\numberline {3.2}Replication and problems with sample impoverishment}{6}
-\contentsline {subsubsection}{\numberline {3.2.1}Sample impoverishment}{6}
+\contentsline {section}{\numberline {3}Pros, Cons and Experiments}{6}
+\contentsline {subsection}{\numberline {3.1}Replication and sample impoverishment}{6}
+\contentsline {subsubsection}{\numberline {3.1.1}Sample impoverishment}{7}
 \contentsline {paragraph}{Solutions to sample impoverishment}{8}
-\contentsline {subsection}{\numberline {3.3}Potential flaws of the method and extensions to experiments}{8}
-\contentsline {subsubsection}{\numberline {3.3.1}Computing time}{8}
-\contentsline {subsubsection}{\numberline {3.3.2}Modeling error}{8}
-\contentsline {subsubsection}{\numberline {3.3.3}Mixing time}{9}
-\contentsline {subsubsection}{\numberline {3.3.4}Flexibility}{9}
-\contentsline {subsubsection}{\numberline {3.3.5}Prior Selection}{9}
-\contentsline {subsection}{\numberline {3.4}Alternative Methods}{9}
-\contentsline {subsubsection}{\numberline {3.4.1}Moment closure}{9}
-\contentsline {subsubsection}{\numberline {3.4.2}Variational inference}{10}
-\contentsline {subsubsection}{\numberline {3.4.3}Maximum \textit {\textbf { a posteriori}} inference}{10}
-\contentsline {subsubsection}{\numberline {3.4.4}Bayesian inference via MCMC}{10}
+\contentsline {paragraph}{A more basic experiment}{8}
+\contentsline {paragraph}{Returning to bandwidth selection}{9}
+\contentsline {subsection}{\numberline {3.2}Pros and Cons}{9}
+\contentsline {subsubsection}{\numberline {3.2.1}Computing time}{9}
+\contentsline {subsubsection}{\numberline {3.2.2}Modeling error}{10}
+\contentsline {subsubsection}{\numberline {3.2.3}Mixing time}{10}
+\contentsline {subsubsection}{\numberline {3.2.4}Prior Selection (cons)}{10}
+\contentsline {subsubsection}{\numberline {3.2.5}Prior Selection (pros)}{10}
+\contentsline {subsubsection}{\numberline {3.2.6}Flexibility}{10}
+\contentsline {section}{\numberline {4}Discussion and alternative methods}{11}
+\contentsline {subsection}{\numberline {4.1}Moment closure}{11}
+\contentsline {subsection}{\numberline {4.2}Variational inference}{11}
+\contentsline {subsection}{\numberline {4.3}Maximum \textit {\textbf { a posteriori}} inference}{11}
+\contentsline {subsection}{\numberline {4.4}Bayesian inference via MCMC}{12}
+\contentsline {subsection}{\numberline {4.5}Conclusions}{13}

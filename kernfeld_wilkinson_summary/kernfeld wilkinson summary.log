@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  30 MAY 2015 21:10
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  7 JUN 2015 13:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -311,7 +311,11 @@ Package color Info: Driver file: pdftex.def on input line 130.
 Package color Info: Redefining color blue on input line 59.
 Package color Info: Redefining color red on input line 60.
 
-(./kernfeld wilkinson summary.aux)
+(./kernfeld wilkinson summary.aux
+
+LaTeX Warning: Label `fig:SigD_trial_may27' multiply defined.
+
+)
 \openout1 = `"kernfeld wilkinson summary.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
@@ -326,8 +330,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 67.
 LaTeX Font Info:    ... okay on input line 67.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 67.
 LaTeX Font Info:    ... okay on input line 67.
-
-(/usr/local/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii
+ (/usr/local/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count115
 \scratchdimen=\dimen139
@@ -445,75 +448,164 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 95.
+(amsmath)                 on input line 96.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[2] [3] [4]
+[2]
+Overfull \hbox (5.9958pt too wide) in paragraph at lines 144--145
+[]\OT1/cmr/m/n/10 Instead, expectation-maximization is a com-mon re-course: al-
+ter-nate be-tween cal-cu-lat-ing ex-pected complete-
+ []
+
+[3] [4]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [5]
-Overfull \hbox (47.03267pt too wide) detected at line 205
-[][] \OMS/cmsy/m/n/10 ^^B [][][]\OML/cmm/m/it/10 :
+Overfull \hbox (20.73753pt too wide) in paragraph at lines 217--217
+[] 
  []
 
-[6] <wilkinson_fig3_biv.png, id=38, 615.29875pt x 252.945pt>
+[6] <wilkinson_fig3_biv.png, id=40, 615.29875pt x 252.945pt>
 File: wilkinson_fig3_biv.png Graphic file (type png)
 
 <use wilkinson_fig3_biv.png>
-Package pdftex.def Info: wilkinson_fig3_biv.png used on input line 222.
+Package pdftex.def Info: wilkinson_fig3_biv.png used on input line 231.
 (pdftex.def)             Requested size: 289.08717pt x 144.54295pt.
 
-<SigD_trial_may27.png, id=39, 513.92pt x 513.92pt>
-File: SigD_trial_may27.png Graphic file (type png)
- <use SigD_trial_may27.png>
-Package pdftex.def Info: SigD_trial_may27.png used on input line 223.
+<SigD_trial_small_bw_may27.png, id=41, 513.92pt x 513.92pt>
+File: SigD_trial_small_bw_may27.png Graphic file (type png)
+
+<use SigD_trial_small_bw_may27.png>
+Package pdftex.def Info: SigD_trial_small_bw_may27.png used on input line 248.
 (pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
 
-[7 <./wilkinson_fig3_biv.png> <./SigD_trial_may27.png>]
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 245.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[7 <./wilkinson_fig3_biv.png>]
+<SigD_trial_large_bw_may_29.png, id=46, 513.92pt x 513.92pt>
+File: SigD_trial_large_bw_may_29.png Graphic file (type png)
+
+<use SigD_trial_large_bw_may_29.png>
+Package pdftex.def Info: SigD_trial_large_bw_may_29.png used on input line 270.
+
+(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<simple_million_stagewise_plots/dist0_contour_decay_prod.png, id=47, 513.92pt x
+ 513.92pt>
+File: simple_million_stagewise_plots/dist0_contour_decay_prod.png Graphic file 
+(type png)
+ <use simple_million_stagewise_plots/dist0_contour_decay_prod.png>
+Package pdftex.def Info: simple_million_stagewise_plots/dist0_contour_decay_pro
+d.png used on input line 281.
+(pdftex.def)             Requested size: 72.26982pt x 72.26982pt.
+
+<simple_million_stagewise_plots/dist1_contour_decay_prod.png, id=48, 513.92pt x
+ 513.92pt>
+File: simple_million_stagewise_plots/dist1_contour_decay_prod.png Graphic file 
+(type png)
+ <use simple_million_stagewise_plots/dist1_contour_decay_prod.png>
+Package pdftex.def Info: simple_million_stagewise_plots/dist1_contour_decay_pro
+d.png used on input line 282.
+(pdftex.def)             Requested size: 72.26982pt x 72.26982pt.
+
+<simple_million_stagewise_plots/dist2_contour_decay_prod.png, id=49, 513.92pt x
+ 513.92pt>
+File: simple_million_stagewise_plots/dist2_contour_decay_prod.png Graphic file 
+(type png)
+ <use simple_million_stagewise_plots/dist2_contour_decay_prod.png>
+Package pdftex.def Info: simple_million_stagewise_plots/dist2_contour_decay_pro
+d.png used on input line 283.
+(pdftex.def)             Requested size: 72.26982pt x 72.26982pt.
+
+<simple_million_stagewise_plots/dist3_contour_decay_prod.png, id=50, 513.92pt x
+ 513.92pt>
+File: simple_million_stagewise_plots/dist3_contour_decay_prod.png Graphic file 
+(type png)
+ <use simple_million_stagewise_plots/dist3_contour_decay_prod.png>
+Package pdftex.def Info: simple_million_stagewise_plots/dist3_contour_decay_pro
+d.png used on input line 284.
+(pdftex.def)             Requested size: 72.26982pt x 72.26982pt.
+
+<simple_million_stagewise_plots/dist4_contour_decay_prod.png, id=51, 513.92pt x
+ 513.92pt>
+File: simple_million_stagewise_plots/dist4_contour_decay_prod.png Graphic file 
+(type png)
+ <use simple_million_stagewise_plots/dist4_contour_decay_prod.png>
+Package pdftex.def Info: simple_million_stagewise_plots/dist4_contour_decay_pro
+d.png used on input line 285.
+(pdftex.def)             Requested size: 72.26982pt x 72.26982pt.
+
+<simple_million_stagewise_plots/dist23_contour_decay_prod.png, id=52, 513.92pt 
+x 513.92pt>
+File: simple_million_stagewise_plots/dist23_contour_decay_prod.png Graphic file
+ (type png)
+ <use simple_million_stagewise_plots/dist23_contour_decay_prod.png>
+Package pdftex.def Info: simple_million_stagewise_plots/dist23_contour_decay_pr
+od.png used on input line 286.
+(pdftex.def)             Requested size: 72.26982pt x 72.26982pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[8 <./SigD_trial_small_bw_may27.png>]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 297.
 
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-) [8] [9]
-[10] (./kernfeld wilkinson summary.bbl [11] [12]) [13]
-(./kernfeld wilkinson summary.aux) ) 
+) [9 <./SigD_trial_large_bw_may_29.png> <./simple_million_stagewise_plots/dist0
+_contour_decay_prod.png> <./simple_million_stagewise_plots/dist1_contour_decay_
+prod.png> <./simple_million_stagewise_plots/dist2_contour_decay_prod.png> <./si
+mple_million_stagewise_plots/dist3_contour_decay_prod.png> <./simple_million_st
+agewise_plots/dist4_contour_decay_prod.png> <./simple_million_stagewise_plots/d
+ist23_contour_decay_prod.png>] [10] [11] [12] (./kernfeld wilkinson summary.bbl
+ [13]) [14]
+(./kernfeld wilkinson summary.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 5082 strings out of 493488
- 69899 string characters out of 3141326
- 159781 words of memory out of 3000000
- 8259 multiletter control sequences out of 15000+200000
- 16906 words of font info for 64 fonts, out of 3000000 for 9000
+ 5121 strings out of 493488
+ 71888 string characters out of 3141326
+ 159836 words of memory out of 3000000
+ 8290 multiletter control sequences out of 15000+200000
+ 17265 words of font info for 65 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,11n,32p,1826b,407s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/local/texlive/2012/texmf-dist/fonts/e
-nc/dvips/base/8r.enc}</usr/local/texlive/2012/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmbx10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmbx12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmbx9.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmbxti10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmex10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfont
-s/cmextra/cmex7.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmmi10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmmi5.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmmi7.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr5.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r6.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.
-pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
-></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></
-usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
-sr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr
-/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/l
-ocal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/lo
-cal/texlive/2012/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on "kernfeld wilkinson summary.pdf" (13 pages, 310589 bytes).
+ 38i,18n,32p,1834b,407s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
+exlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/te
+xlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/tex
+live/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texli
+ve/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texl
+ive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texli
+ve/2012/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/local/te
+xlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
+live/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texli
+ve/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive
+/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2
+012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2012
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2012/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2012/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2012/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2012/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2012/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2012/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2012/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2012/texmf-dist/fonts/
+type1/urw/courier/ucrr8a.pfb>
+Output written on "kernfeld wilkinson summary.pdf" (14 pages, 604165 bytes).
 PDF statistics:
- 130 PDF objects out of 1000 (max. 8388607)
- 92 compressed objects within 1 object stream
+ 140 PDF objects out of 1000 (max. 8388607)
+ 94 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
