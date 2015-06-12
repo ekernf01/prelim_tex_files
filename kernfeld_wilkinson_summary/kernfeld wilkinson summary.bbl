@@ -60,9 +60,53 @@ Golightly, A., Wilkinson, D.J.:
   models using particle markov chain monte carlo.
 \newblock Interface focus (2011)  rsfs20110047
 
-\bibitem{wilk_email}
-Wilkinson, D.J.
-\newblock Personal communication ({MAY} 2015)
+\bibitem{milner2013moment}
+Milner, P., Gillespie, C.S., Wilkinson, D.J.:
+\newblock Moment closure based parameter inference of stochastic kinetic
+  models.
+\newblock Statistics and Computing \textbf{23}(2) (2013)  287--295
+
+\bibitem{zechner2012moment}
+Zechner, C., Ruess, J., Krenn, P., Pelet, S., Peter, M., Lygeros, J., Koeppl,
+  H.:
+\newblock Moment-based inference predicts bimodality in transient gene
+  expression.
+\newblock Proceedings of the National Academy of Sciences \textbf{109}(21)
+  (2012)  8340--8345
+
+\bibitem{silverman1986density}
+Silverman, B.W.:
+\newblock Density estimation for statistics and data analysis. Volume~26.
+\newblock CRC press (1986)
+
+\bibitem{gu_debug_MCMC}
+Gu, K.:
+\newblock Debugging mcmc
+
+\bibitem{elsner_debug_MCMC}
+Elsner, M.:
+\newblock Debugging samplers: Making mcmc work in practice
+
+\bibitem{geyer_mcmc_debug}
+Geyer, C.:
+\newblock Mcmc: Does it work? how can we tell?
+
+\bibitem{geweke2004getting}
+Geweke, J.:
+\newblock Getting it right: Joint distribution tests of posterior simulators.
+\newblock Journal of the American Statistical Association \textbf{99}(467)
+  (2004)  799--804
+
+\bibitem{sehl2009accurate}
+Sehl, M., Alekseyenko, A.V., Lange, K.L.:
+\newblock Accurate stochastic simulation via the step anticipation
+  $\tau$-leaping (sal) algorithm.
+\newblock Journal of Computational Biology \textbf{16}(9) (2009)  1195--1208
+
+\bibitem{beaumont2002approximate}
+Beaumont, M.A., Zhang, W., Balding, D.J.:
+\newblock Approximate bayesian computation in population genetics.
+\newblock Genetics \textbf{162}(4) (2002)  2025--2035
 
 \bibitem{gupta2014comparison}
 Gupta, A., Rawlings, J.B.:
@@ -76,25 +120,11 @@ Zechner, C., Unger, M., Pelet, S., Peter, M., Koeppl, H.:
   single-cell recordings.
 \newblock Nature methods \textbf{11}(2) (2014)  197--202
 
-\bibitem{milner2013moment}
-Milner, P., Gillespie, C.S., Wilkinson, D.J.:
-\newblock Moment closure based parameter inference of stochastic kinetic
-  models.
-\newblock Statistics and Computing \textbf{23}(2) (2013)  287--295
-
 \bibitem{kugler2012moment}
 K{\"u}gler, P.:
 \newblock Moment fitting for parameter inference in repeatedly and partially
   observed stochastic biological models.
 \newblock PloS one \textbf{7}(8) (2012)  e43001
-
-\bibitem{zechner2012moment}
-Zechner, C., Ruess, J., Krenn, P., Pelet, S., Peter, M., Lygeros, J., Koeppl,
-  H.:
-\newblock Moment-based inference predicts bimodality in transient gene
-  expression.
-\newblock Proceedings of the National Academy of Sciences \textbf{109}(21)
-  (2012)  8340--8345
 
 \bibitem{Milner201199}
 Milner, P., Gillespie, C.S., Wilkinson, D.J.:

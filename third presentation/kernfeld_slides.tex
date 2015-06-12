@@ -118,44 +118,44 @@ Darren Wilkinson's ``Parameter inference for stochastic kinetic models of bacter
 \begin{itemize}
 \item Simulation begins at time $0$ and proceeds in continuous time.
 \item $\mathcal{R}_j$ is a chemical reaction.
-\item $R_j(t) \in \mathbb{Z}_{\geq 0}$ counts occurrences of $\mathcal{R}_j$ up to time $t$.
-\item $\theta_j\in \mathbb{R}_{\geq 0}$ is the rate at which $\mathcal{R}_j$ happens. More on this in future slides.
-\item $X_i(t)  \in \mathbb{Z}_{\geq 0}$ is the number of molecules of type $i$
-\item $\mathcal{D}_t \in \mathbb{R}$ is an incomplete observation of $X(t)$ with error.
+\item $R_j(t) \in \mathbb{Z}_{\geq 0}$ counts reactions.
+\item $z_i$ categorizes the $i$th reaction.
+\item The $i$th reaction occurs at $t_i$.
+\item \red{$\theta_j\in \mathbb{R}_{\geq 0}$ is the rate of $\mathcal{R}_j$.}
+\item $X_i(t)  \in \mathbb{Z}_{\geq 0}$ counts  type $i$ molecules.
+\item $\mathcal{D}_{s_k} \in \mathbb{R}$ is an incomplete observation of $X(s_k)$ with error.
 \end{itemize}
+Of these, the only known quantity is $\mathcal{D}_{s_k}$ for some set of times $\{s_k\}$, $k \in \{0, ... n\}$. But, we also know all the stoichiometry.
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Wilkinson's eXample--reaction requirement}
-\begin{figure}
+\begin{frame}{Wilkinson's example--reactants and rates}
+
+{ Roles of chemicals in various reactions. Green means the molecule is in the Poisson intensity and blue means it is not. Reactions requiring multiple copies of reactants use binomial coeficients.}
 \includegraphics[scale=0.22]{rmat_fig.png}
-\caption{\label{fig:entry} Roles of chemicals in various reactions. Green means the molecule is involved and blue means no involvement.}
-\end{figure}
 $$R_1(t)\sim PP(\theta_1 X_1(t))$$
-$$R_5(t)\sim PP(\theta_5 X_4(t)X_5(t))$$
+$$R_7(t)\sim PP(\theta_7 X_4(t)X_5(t))$$
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Wilkinson's eXample--net change}
-\begin{figure}
-\includegraphics[scale=0.22]{sto_fig.png}
-\caption{\label{fig:stoich} Roles of chemicals in various reactions. Green means the molecule is involved and blue means no involvement.}
-\end{figure}
-$$R_1(t)\sim PP(\theta_1 X_1(t))$$
-$$R_5(t)\sim PP(\theta_5 X_4(t)X_5(t))$$
-\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{Wilkinson's example--net change}
+%\includegraphics[scale=0.22]{sto_fig.png}
+%{ Roles of chemicals in various reactions. Yellow means the molecule is produced, dark blue means consumed, and sky blue means no involvement.}
+%$$R_1(t)\sim PP(\theta_1 X_1(t))$$
+%$$R_5(t)\sim PP(\theta_5 X_4(t)X_5(t))$$
+%\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Some notes}
 
 \begin{itemize}
 \item Assume reaction $\mathcal{R}_j$ occurs independently of the others (given the state).\item Priors on $\theta$ and $X(0)$, plus the dynamics already mentioned, determine the whole system.
-\item EXact forward simulations are easy.
+\item Exact forward simulations are easy.
 \end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Forward simulation}
+\begin{frame}{Forward simulation (Gillespie method)}
 
 
 \begin{algorithm}[H]
@@ -171,7 +171,7 @@ Initialize $X$ to $X(0)$ and $t$ to 0.\\
 While true:\\
 \Indp
 Calculate $\alpha_j = \theta_j\prod_i {X_i\choose P_{ij}}$\\
-Increment $t$ by EXponential(rate=$\sum_j \alpha_j$) \\
+Increment $t$ by Exponential(rate=$\sum_j \alpha_j$) \\
 If $t > T$, quit and return $X$.\\
 Otherwise, choose an integer $j$ with probability $\frac{\alpha_j}{\sum_j \alpha_j}$.\\
 Increment $X$ by adding column $j$ of $S$.\\
@@ -179,7 +179,10 @@ Increment $X$ by adding column $j$ of $S$.\\
 
 
 \end{frame}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Forward simulation: computation}
+Simulate in five minute (300-second) intervals. Reaction rates peak at 1/second. Reactant amounts go up to 200. That makes for 60,000 exponential and categorical draws, plus some FLOPs along with each.
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\begin{frame}{Problem}
 %\begin{figure}
@@ -191,57 +194,71 @@ Increment $X$ by adding column $j$ of $S$.\\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Likelihoods}
-Likelihood if reaction $\nu_i$ happens at $t_i$: $$
-\prod_{i=1}^\text{events} \theta_{\nu_{i}} \prod_{j=1}^\text{rXn types} {{X_{j}(t_{i-1})}\choose{p_{{\nu_{i}}j}}}\exp\left(-\theta_{\nu_{i}}
-(t_i - t_{i-1}) {{X_j(t_{i-1})}\choose{p_{{\nu_{i}}j}}} \right)
+Likelihood if reaction $z_i$ happens at $t_i$: $$
+\prod_{i=1}^\text{events} \theta_{z_{i}} \prod_{j=1}^\text{rxn types} {{X_{j}(t_{i-1})}\choose{p_{{z_{i}}j}}}\exp\left(-\theta_{z_{i}}
+(t_i - t_{i-1}) {{X_j(t_{i-1})}\choose{p_{{z_{i}}j}}} \right)
+$$
+\pause
+
+Likelihood from observing $X(t_i)$'s. Sum is over ``eligible'' paths for $z$ and integral is over a simplex of possible wait-time tuples.
+$$
+\sum_{z}\int_{t} \prod_{i=1}^\text{events in $z$} \theta_{z_{i}} \prod_{j=1}^\text{rxn types} {{X_{j}(t_{i-1})}\choose{p_{{z_{i}}j}}}\exp\left(\text{same as above}\right).
 $$
 
-Likelihood from observing $X(t_i)$. Sum is over ``eligible'' paths for $\nu$ and integral is over a simpleX of possible wait-time tuples.
-$$
-\sum_{\nu}\int_{t} \prod_{i=1}^\text{events in $\nu$} \theta_{\nu_{i}} \prod_{j=1}^\text{rXn types} {{X_{j}(t_{i-1})}\choose{p_{{\nu_{i}}j}}}\exp\left(\text{same as above}\right).
-$$
-
+It's not just hard analytically: rejection sampling fails, too.
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Angles of attack}
-Likelihood
-$$
-\sum_{\nu}\int_{t} \prod_{i=1}^\text{events in $\nu$} \theta_{\nu_{i}} \prod_{j=1}^\text{rXn types} {{X_{j}(t_{i-1})}\choose{p_{{\nu_{i}}j}}}\exp\left(-\theta_{\nu_{i}}
-(t_i - t_{i-1}) {{X_j(t_{i-1})}\choose{p_{{\nu_{i}}j}}} \right).
-$$
+\begin{frame}{Methods for this problem}
 
-You might try:
-\begin{itemize}
-\item EM--still requires nasty sum.
-\item Metropolis-Hastings on $\theta$--still requires likelihood evaluation.
-\item Gibbs sampling--how do you update $\nu$?
-\item Rejection sampling--most samples get rejected.
-\end{itemize}
+Approximate likelihoods: \\ Diffusion approximations, the LNA, moment-matching\\
+\phantom{0}
 
-Solutions will need to either approXimate the likelihood or avoid it completely.
+Issue: \pause approximations break down for small systems\\
 
+Endpoint-conditioned simulation: \\ EM, Gibbs, LF-MCMC, simulated maximum likelihood, PMMH\\
+\phantom{0}
+
+Recurring issue: \pause forward simulations land too far from data.\\
+\phantom{0}
+Compromises: \\ABC to initialize MCMC, ``tweaked'' rejection sampling\\
+\phantom{0}
+Oddballs: \\ Variational inference
 \end{frame}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{A complication: measurement error}
-If reactions occur at times $t_i$ and observations occur at times $s_k$, the likelihood becomes a sum over possible values of $X$ at times $s_0$, $s_1$, ... $s_\text{(num obs)}$ of:
-\begin{align*}
-& P(\mathcal{D}|X) \times \\
-&\sum_{\nu}\int_{t} \prod_{i=1}^\text{events in $\nu$} \theta_{\nu_{i}} \prod_{j=1}^\text{rXn types} {{X_{j}(t_{i-1})}\choose{p_{{\nu_{i}}j}}}\exp\left(-\theta_{\nu_{i}}
-(t_i - t_{i-1}) {{X_j(t_{i-1})}\choose{p_{{\nu_{i}}j}}} \right).
-\end{align*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{A complication: measurement error}
+%If reactions occur at times $t_i$ and observations occur at times $s_k$, the likelihood becomes a sum over possible values of $X$ at times $s_0$, $s_1$, ... $s_\text{(num obs)}$ of this:
+%\begin{align*}
+%& P(\mathcal{D}|X) \times \\
+%&\sum_{z}\int_{t} \prod_{i=1}^\text{events in $z$} \theta_{z_{i}} \prod_{j=1}^\text{rxn types} {{X_{j}(t_{i-1})}\choose{p_{{z_{i}}j}}}\exp\left(-\theta_{z_{i}}
+%(t_i - t_{i-1}) {{X_j(t_{i-1})}\choose{p_{{z_{i}}j}}} \right).
+%\end{align*}
 
-%This raises a question: is it actually easier to sum out the possible reaction sequences/times  $\nu, t$ at the same time as the possibilties for $X(s_1)$, ... $X(s_\text{num obs})$?
+%This raises a question: is it actually easier to sum out the possible reaction sequences/times  $z, t$ at the same time as the possibilties for $X(s_1)$, ... $X(s_\text{num obs})$?
 
-\end{frame}
+%\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Another view of the problem}
+Plots of simulated reactions. Scale changes left to right; black diamonds are identical.
 \includegraphics[scale=0.30]{simulated_data_multiple_mols.png}
 \includegraphics[scale=0.30]{simulated_data_obs.png}
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Another view of the problem}
 
+\includegraphics[scale=0.3]{fwd_sampling_graphic1.png}
+\pause
+\phantom{0000}
+\includegraphics[scale=0.3]{fwd_sampling_graphic2.png}\\
+\pause
+\includegraphics[scale=0.3]{fwd_sampling_graphic3.png}
+\phantom{00000000000000l}
+\pause
+\includegraphics[scale=0.3]{fwd_sampling_graphic4.png}
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\begin{frame}{Other work}
 %\begin{itemize} 
@@ -277,7 +294,10 @@ Can just as well use $\frac{P(\theta^*,X^*,\mathcal{D})}{P(\theta,X,\mathcal{D})
 \times 
 \red{\frac{P(X| \theta)}{P(X^*| \theta^*)}} 
 \frac{ P( \theta)}{ P( \theta^*)} 
-\frac{P(\mathcal{D}|X, \theta)}{P(\mathcal{D}|X^*, \theta^*)}\\
+\frac{P(\mathcal{D}|X, \theta)}{P(\mathcal{D}|X^*, \theta^*)}
+\end{align*}
+\pause
+\begin{align*}
 &=\frac{f(\theta^*|\theta)}{f(\theta|\theta^*)}
 \red{\frac{P(X^*| \theta^*)}{P(X| \theta)} }
 \times 
@@ -289,14 +309,15 @@ Can just as well use $\frac{P(\theta^*,X^*,\mathcal{D})}{P(\theta,X,\mathcal{D})
 \frac{ P( \theta)}{ P( \theta^*)} 
 \frac{P(\mathcal{D}|X, \theta)}{P(\mathcal{D}|X^*, \theta^*)}.
 \end{align*}
-This approach, from 2003, is due to Marjoram et al. (paper title: ``MCMC Without Likelihoods'') \cite{Marjoram23122003}. 
+\pause
+$X$ here means $\{X(t)|t \in [0,T]\}$, so $z$ would be redundant. This approach, from 2003, is due to Marjoram et al. (paper title: ``MCMC Without Likelihoods'') \cite{Marjoram23122003}. 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Wilkinson's adaptation of LF-MCMC}
-LF-MCMC fails for the same reason as everything else: $P(\mathcal{D}|X, \theta)$ is tiny for almost all $X$ resulting from simulations.\\
+LF-MCMC fails because $P(\mathcal{D}|X, \theta)$ is tiny for almost all $X$ resulting from simulations.\\
 \phantom{0}
-The graphic on the following slides is from \cite{FinkeSMCslides}.
+The SMC graphic on the following slides is from \cite{FinkeSMCslides}.
 \end{frame}
 \setbeamercolor{background canvas}{bg=}
 \includepdf[pages=-]{wonderful_smc_graphic_export}
@@ -349,6 +370,16 @@ After burn-in and thinning, add $(\theta, X_{t_{i}})$ to $B_{i}$\\
 
 \end{algorithm}
 \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{LF-pMCMC computation}
+
+$$\underbrace{\frac{300\text{ sec}}{\text{simulation}} \times \frac{1\text{ reaction}}{\text{sec}\times\text{molecule}}\times200 \text{{ molecules}}}_{60,000\text{ reactions per simulation}}$$
+$$ \times \frac{24 \text{simulations}}{\text{particle}} \times 5,000,000 \text{particles}$$
+
+The product is 7.2e12, which is 7.2 trillion. It runs in two days.\\
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Likelihood Free Particle MCMC}
 
@@ -370,22 +401,87 @@ In place of the posterior, use this joint pdf: $P(\mathcal{D}_{t_{i}}, x(t_{1:i}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Does it mix?}
-Bivariate marginals of the distribution of production (vertical) and decay (horizontal) log rates in a simple system. From left to right, distributions condition on zero data points, one, two, three, four, and 24.
-\begin{center}
+\begin{frame}{Will it mix?}
+Bivariate marginals of the distribution of production (vertical) and decay (horizontal) log rates in a simple system. From left to right, these condition on zero data points, one, two, three, four, and 24.
+\pause
+\begin{columns}[c]
+\begin{column}{0.17\textwidth}
+Data used:\\ 0, 1, 2\\
+\phantom{0}
+\phantom{0}
+Data used:\\ 3, 4, 24
+\end{column}
+\begin{column}{0.80\textwidth}
+
 \includegraphics[height=1in,width=1in]{simple_million_stagewise_plots/dist0_contour_decay_prod.png}
 \includegraphics[height=1in,width=1in]{simple_million_stagewise_plots/dist1_contour_decay_prod.png}
-\includegraphics[height=1in,width=1in]{simple_million_stagewise_plots/dist2_contour_decay_prod.png}
-\end{center}
-\begin{center}
+\includegraphics[height=1in,width=1in]{simple_million_stagewise_plots/dist2_contour_decay_prod.png}\\
+
 \includegraphics[height=1in,width=1in]{simple_million_stagewise_plots/dist3_contour_decay_prod.png}
 \includegraphics[height=1in,width=1in]{simple_million_stagewise_plots/dist4_contour_decay_prod.png}
 \includegraphics[height=1in,width=1in]{simple_million_stagewise_plots/dist23_contour_decay_prod.png}
-\end{center}
+
+\end{column}
+\end{columns}
+The red diamond is the true value.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Will it mix?}
+
+\begin{columns}[c]
+
+\begin{column}{0.5\textwidth}
+\includegraphics[height=2.5in,width=2.5in]{SigD_trial_large_bw_may_29.png}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+A replication attempt using Wilkinson's settings: a 13-molecule, 18-reaction system with 1,000,000 particles. Log rates displayed.
+
+\includegraphics[height=1.5in,width=2.5in]{wilkinson_fig3_biv.png}
+\end{column}
+\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Will it mix?}
+
+Log parameters at some intermediate stages.  From left to right, these condition on zero data points, one, two, three, 12, and 16.
+
+\begin{columns}[c]
+\begin{column}{0.17\textwidth}
+
+Data used: 0, 1, 2\\
+\phantom{0}
+Data used: 3, 12, 16\\
+
+\end{column}
+\begin{column}{0.80\textwidth}
+
+\includegraphics[height=0.9in,width=0.9in]{large_bw_million/dist1_contour_flacherep_flacheunrep.png}
+\includegraphics[height=0.9in,width=0.9in]{large_bw_million/dist2_contour_flacherep_flacheunrep.png}
+\includegraphics[height=0.9in,width=0.9in]{large_bw_million/dist3_contour_flacherep_flacheunrep.png}\\
+\includegraphics[height=0.9in,width=0.9in]{large_bw_million/dist4_contour_flacherep_flacheunrep.png}
+\includegraphics[height=0.9in,width=0.9in]{large_bw_million/dist13_contour_flacherep_flacheunrep.png}
+\includegraphics[height=0.9in,width=0.9in]{large_bw_million/dist17_contour_flacherep_flacheunrep.png}\\
+
+\end{column}
+\end{columns}
+ The red diamond is the true value.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Sample Impoverishment}
-
+Repeats come from common ancestry or from rejection events.
+\pause
+How many unique particles persist by the end?\\
+\pause
+\phantom{0}
+Keeping every fifth sample, the event $E_i = \{\text{ten consecutive}$ $\text{rejections}\}$ is always enough to get a repeat.
+\pause
+So, if the stage-$i$ rejection rate is $r$, and consecutive rejections are independent, $\Pr(E_i^C)$ is $a_i=1 - r_i^{10}$. In turn, the (asymptotic) proportion of unique particles surviving is below $\Pr(E^C)$.\\
+\pause
+\phantom{0}
+For the samples I showed, the product of empirical estimates for $a_i$ was $300/1,000,000$.
+\pause
+That ignores correlation in the rejection events and common ancestry.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

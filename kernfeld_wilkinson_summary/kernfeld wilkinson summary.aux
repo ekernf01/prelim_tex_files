@@ -5,15 +5,16 @@
 \citation{gillespie1977}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction: Parameter Inference for Biological Models}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Poisson process modeling of chemical systems}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Inference with complete data and simulation}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Forward simulation and inference with complete data}{2}}
 \citation{horvath2008parameter}
 \citation{daigle2012accelerated}
 \citation{bayer2015stoch_em}
 \newlabel{alg:gillespie}{{1}{3}}
 \@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces The Gillespie algorithm }}{3}}
+\newlabel{eqn:complete_data}{{1}{3}}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Approaching inference without complete data}{3}}
 \newlabel{sec:intro_em}{{2}{3}}
-\newlabel{eqn_nasty_lik}{{1}{3}}
+\newlabel{eqn_nasty_lik}{{2}{3}}
 \citation{horvath2008parameter}
 \citation{bayer2015stoch_em}
 \citation{daigle2012accelerated}
@@ -26,35 +27,47 @@
 \citation{milner2013moment}
 \citation{zechner2012moment}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Inference via Wilkinson's method}{5}}
+\newlabel{sec:wilk_algo}{{2.2}{5}}
 \newlabel{pMCMC}{{2}{6}}
 \@writefile{loa}{\contentsline {algocf}{\numberline {2}{\ignorespaces   Wilkinson's sequence of MCMC Samplers}}{6}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Pros, Cons and Experiments}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Replication and sample impoverishment}{6}}
+\citation{silverman1986density}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experiments and discussion of the method}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Reproducing Wilkinson's experiments}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces   Bivariate marginal of the posterior from Wilkinson's figure 3. Axes show log reaction rates for binding and unbinding rates of two molecules. True rates appear as intersecting gray lines.}}{8}}
+\newlabel{fig:wilk_fig_3}{{1}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Bivariate marginal of the posterior from several attempts at replicating W10's figure 3. Axes show log reaction rates for binding and unbinding rates of two molecules. True rates appear as a red diamond. From left, attempts use bandwidth 0.5 and 0.05 (absolute) and then one tenth of the Silverman bandwidth. }}{8}}
+\newlabel{fig:main_results}{{2}{8}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}A more basic experiment}{8}}
+\citation{gu_debug_MCMC}
+\citation{elsner_debug_MCMC}
+\citation{geyer_mcmc_debug}
+\citation{geweke2004getting}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Bivariate marginals of the distribution of production (vertical) and decay (horizontal) log rates in a simple system. From left to right, distributions condition on zero data points, one, and two. }}{9}}
+\newlabel{fig:easy_test}{{3}{9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Software documentation and testing}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces   Results from a Geweke test of the pMCMC\_julia.jl module. Each pane gives a Q-Q plot comparing observations (left), parameters (center), or hidden states at time 1 (right) from (iid generative vs. MCMC). Each plot also shows $y=x$ for reference.}}{10}}
+\newlabel{fig:geweke}{{4}{10}}
+\newlabel{fig:gillespie_test}{{3.2}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces   Left: comparison of the stochastic mean $n_0\qopname  \relax o{exp}(-kt)$ (red) with multiple simulations of the corresponding Markov process. Remainder of figure: representative simulations from my work (center) and W10 (right).}}{10}}
+\newlabel{fig:gillespie_test}{{5}{10}}
 \citation{golightly2011bayesian}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces   Bivariate marginal of the posterior from Wilkinson's figure 3. Axes show log reaction rates for binding and unbinding rates of two molecules. True rates appear as intersecting gray lines.}}{7}}
-\newlabel{fig:SigD_trial_may27}{{1}{7}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Sample impoverishment}{7}}
-\citation{wilk_email}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Bivariate marginal of the posterior from an attempted replication of Wilkinson's figure 3. Axes show log reaction rates for binding and unbinding rates of two molecules. True rates appear as a red diamond.}}{8}}
-\newlabel{fig:SigD_trial_may27}{{3.1.1}{8}}
-\@writefile{toc}{\contentsline {paragraph}{Solutions to sample impoverishment}{8}}
-\@writefile{toc}{\contentsline {paragraph}{A more basic experiment}{8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Bivariate marginal of the posterior from a large-bandwidth attempt at replicating Wilkinson's figure 3. Axes show log reaction rates for binding and unbinding rates of two molecules. True rates appear as a red diamond. }}{9}}
-\newlabel{fig:SigD_trial_may29}{{3}{9}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Bivariate marginals of the distribution of production (vertical) and decay (horizontal) log rates in a simple system. From left to right, distributions condition on zero data points, one, two, three, four, and 24. }}{9}}
-\newlabel{fig:simple_test}{{4}{9}}
-\@writefile{toc}{\contentsline {paragraph}{Returning to bandwidth selection}{9}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Pros and Cons}{9}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Computing time}{9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Sample impoverishment}{11}}
+\newlabel{sec:samp_impov}{{3.3}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Comments on the method}{11}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}Computing time}{11}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.2}Modeling error}{11}}
+\citation{sehl2009accurate}
+\citation{beaumont2002approximate}
 \citation{gupta2014comparison}
 \citation{zechner2014scalable}
 \citation{reinker2006parameter}
 \citation{Boys2008}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Modeling error}{10}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}Mixing time}{10}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.4}Prior Selection (cons)}{10}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.5}Prior Selection (pros)}{10}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.6}Flexibility}{10}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.3}Look-ahead steps and preliminary smoothing}{12}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.4}Mixing time}{12}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.5}Prior Selection (cons)}{12}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.6}Prior Selection (pros)}{12}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.7}Flexibility}{12}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion and alternative methods}{12}}
 \citation{milner2013moment}
 \citation{kugler2012moment}
 \citation{zechner2012moment}
@@ -69,10 +82,9 @@
 \citation{opper2008variational}
 \citation{gupta2014comparison}
 \citation{srivastava_rawlings2014stoch_opt}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion and alternative methods}{11}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Moment closure}{11}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Variational inference}{11}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Maximum \textit  {\textbf  { a posteriori}} inference}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Moment closure}{13}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Variational inference}{13}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Maximum \textit  {\textbf  { a posteriori}} inference}{13}}
 \citation{golightly2011bayesian}
 \citation{andrieu2010particle}
 \citation{golightly2011bayesian}
@@ -93,7 +105,7 @@
 \citation{amrein2012rate}
 \citation{golightly2011bayesian}
 \citation{zechner2014scalable}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Bayesian inference via MCMC}{12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Bayesian inference via MCMC}{14}}
 \citation{owen2014scalable}
 \citation{zechner2014scalable}
 \citation{andrieu2010particle}
@@ -109,20 +121,26 @@
 \bibcite{Boys2008}{8}
 \bibcite{Marjoram23122003}{9}
 \bibcite{golightly2011bayesian}{10}
-\bibcite{wilk_email}{11}
-\bibcite{gupta2014comparison}{12}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Conclusions}{13}}
-\bibcite{zechner2014scalable}{13}
-\bibcite{milner2013moment}{14}
-\bibcite{kugler2012moment}{15}
-\bibcite{zechner2012moment}{16}
-\bibcite{Milner201199}{17}
-\bibcite{opper2008variational}{18}
-\bibcite{srivastava_rawlings2014stoch_opt}{19}
-\bibcite{andrieu2010particle}{20}
-\bibcite{owen2014scalable}{21}
-\bibcite{owen2014ABC_LF-MCMCcomparison}{22}
-\bibcite{golightly2005bayesian}{23}
-\bibcite{fearnhead2014inference}{24}
-\bibcite{golightly2014smc_b_subtilis}{25}
-\bibcite{amrein2012rate}{26}
+\bibcite{milner2013moment}{11}
+\bibcite{zechner2012moment}{12}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Conclusions}{15}}
+\bibcite{silverman1986density}{13}
+\bibcite{gu_debug_MCMC}{14}
+\bibcite{elsner_debug_MCMC}{15}
+\bibcite{geyer_mcmc_debug}{16}
+\bibcite{geweke2004getting}{17}
+\bibcite{sehl2009accurate}{18}
+\bibcite{beaumont2002approximate}{19}
+\bibcite{gupta2014comparison}{20}
+\bibcite{zechner2014scalable}{21}
+\bibcite{kugler2012moment}{22}
+\bibcite{Milner201199}{23}
+\bibcite{opper2008variational}{24}
+\bibcite{srivastava_rawlings2014stoch_opt}{25}
+\bibcite{andrieu2010particle}{26}
+\bibcite{owen2014scalable}{27}
+\bibcite{owen2014ABC_LF-MCMCcomparison}{28}
+\bibcite{golightly2005bayesian}{29}
+\bibcite{fearnhead2014inference}{30}
+\bibcite{golightly2014smc_b_subtilis}{31}
+\bibcite{amrein2012rate}{32}

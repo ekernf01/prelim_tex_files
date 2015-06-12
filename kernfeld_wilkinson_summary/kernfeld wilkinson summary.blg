@@ -3,46 +3,51 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: kernfeld wilkinson summary.aux
 The style file: splncs.bst
 Database file #1: prelim_biblio.bib
-Warning--empty title in wilk_email
-You've used 26 entries,
+Warning--entry type for "elsner_debug_MCMC" isn't style-file defined
+--line 45 of file prelim_biblio.bib
+Warning--entry type for "gu_debug_MCMC" isn't style-file defined
+--line 52 of file prelim_biblio.bib
+Warning--entry type for "geyer_mcmc_debug" isn't style-file defined
+--line 59 of file prelim_biblio.bib
+You've used 32 entries,
             2087 wiz_defined-function locations,
-            657 strings with 8647 characters,
-and the built_in function-call counts, 8532 in all, are:
-= -- 884
-> -- 273
-< -- 22
-+ -- 101
-- -- 75
-* -- 602
-:= -- 1086
-add.period$ -- 29
-call.type$ -- 26
-change.case$ -- 24
+            695 strings with 9550 characters,
+and the built_in function-call counts, 10060 in all, are:
+= -- 1042
+> -- 311
+< -- 26
++ -- 117
+- -- 85
+* -- 689
+:= -- 1277
+add.period$ -- 34
+call.type$ -- 32
+change.case$ -- 30
 chr.to.int$ -- 0
-cite$ -- 27
-duplicate$ -- 476
-empty$ -- 744
-format.name$ -- 75
-if$ -- 2076
+cite$ -- 32
+duplicate$ -- 560
+empty$ -- 898
+format.name$ -- 85
+if$ -- 2450
 int.to.chr$ -- 0
-int.to.str$ -- 26
-missing$ -- 26
-newline$ -- 132
-num.names$ -- 26
-pop$ -- 61
+int.to.str$ -- 32
+missing$ -- 31
+newline$ -- 160
+num.names$ -- 32
+pop$ -- 79
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 366
+skip$ -- 442
 stack$ -- 0
-substring$ -- 642
-swap$ -- 300
-text.length$ -- 22
+substring$ -- 754
+swap$ -- 345
+text.length$ -- 26
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 1
-while$ -- 80
-width$ -- 28
-write$ -- 301
-(There was 1 warning)
+warning$ -- 0
+while$ -- 95
+width$ -- 34
+write$ -- 361
+(There were 3 warnings)

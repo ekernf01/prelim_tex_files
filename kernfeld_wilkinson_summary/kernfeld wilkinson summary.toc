@@ -1,25 +1,25 @@
 \contentsline {section}{\numberline {1}Introduction: Parameter Inference for Biological Models}{2}
 \contentsline {subsection}{\numberline {1.1}Poisson process modeling of chemical systems}{2}
-\contentsline {subsection}{\numberline {1.2}Inference with complete data and simulation}{2}
+\contentsline {subsection}{\numberline {1.2}Forward simulation and inference with complete data}{2}
 \contentsline {section}{\numberline {2}Approaching inference without complete data}{3}
 \contentsline {subsection}{\numberline {2.1}Methods similar to Wilkinson's}{4}
 \contentsline {subsection}{\numberline {2.2}Inference via Wilkinson's method}{5}
-\contentsline {section}{\numberline {3}Pros, Cons and Experiments}{6}
-\contentsline {subsection}{\numberline {3.1}Replication and sample impoverishment}{6}
-\contentsline {subsubsection}{\numberline {3.1.1}Sample impoverishment}{7}
-\contentsline {paragraph}{Solutions to sample impoverishment}{8}
-\contentsline {paragraph}{A more basic experiment}{8}
-\contentsline {paragraph}{Returning to bandwidth selection}{9}
-\contentsline {subsection}{\numberline {3.2}Pros and Cons}{9}
-\contentsline {subsubsection}{\numberline {3.2.1}Computing time}{9}
-\contentsline {subsubsection}{\numberline {3.2.2}Modeling error}{10}
-\contentsline {subsubsection}{\numberline {3.2.3}Mixing time}{10}
-\contentsline {subsubsection}{\numberline {3.2.4}Prior Selection (cons)}{10}
-\contentsline {subsubsection}{\numberline {3.2.5}Prior Selection (pros)}{10}
-\contentsline {subsubsection}{\numberline {3.2.6}Flexibility}{10}
-\contentsline {section}{\numberline {4}Discussion and alternative methods}{11}
-\contentsline {subsection}{\numberline {4.1}Moment closure}{11}
-\contentsline {subsection}{\numberline {4.2}Variational inference}{11}
-\contentsline {subsection}{\numberline {4.3}Maximum \textit {\textbf { a posteriori}} inference}{11}
-\contentsline {subsection}{\numberline {4.4}Bayesian inference via MCMC}{12}
-\contentsline {subsection}{\numberline {4.5}Conclusions}{13}
+\contentsline {section}{\numberline {3}Experiments and discussion of the method}{7}
+\contentsline {subsection}{\numberline {3.1}Reproducing Wilkinson's experiments}{7}
+\contentsline {subsubsection}{\numberline {3.1.1}A more basic experiment}{8}
+\contentsline {subsection}{\numberline {3.2}Software documentation and testing}{9}
+\contentsline {subsection}{\numberline {3.3}Sample impoverishment}{11}
+\contentsline {subsection}{\numberline {3.4}Comments on the method}{11}
+\contentsline {subsubsection}{\numberline {3.4.1}Computing time}{11}
+\contentsline {subsubsection}{\numberline {3.4.2}Modeling error}{11}
+\contentsline {subsubsection}{\numberline {3.4.3}Look-ahead steps and preliminary smoothing}{12}
+\contentsline {subsubsection}{\numberline {3.4.4}Mixing time}{12}
+\contentsline {subsubsection}{\numberline {3.4.5}Prior Selection (cons)}{12}
+\contentsline {subsubsection}{\numberline {3.4.6}Prior Selection (pros)}{12}
+\contentsline {subsubsection}{\numberline {3.4.7}Flexibility}{12}
+\contentsline {section}{\numberline {4}Discussion and alternative methods}{12}
+\contentsline {subsection}{\numberline {4.1}Moment closure}{13}
+\contentsline {subsection}{\numberline {4.2}Variational inference}{13}
+\contentsline {subsection}{\numberline {4.3}Maximum \textit {\textbf { a posteriori}} inference}{13}
+\contentsline {subsection}{\numberline {4.4}Bayesian inference via MCMC}{14}
+\contentsline {subsection}{\numberline {4.5}Conclusions}{15}

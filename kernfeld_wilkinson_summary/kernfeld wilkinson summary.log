@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  7 JUN 2015 13:46
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  11 JUN 2015 14:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -313,23 +313,23 @@ Package color Info: Redefining color red on input line 60.
 
 (./kernfeld wilkinson summary.aux
 
-LaTeX Warning: Label `fig:SigD_trial_may27' multiply defined.
+LaTeX Warning: Label `fig:gillespie_test' multiply defined.
 
 )
 \openout1 = `"kernfeld wilkinson summary.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
  (/usr/local/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count115
@@ -448,136 +448,154 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 96.
+(amsmath)                 on input line 95.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [2]
-Overfull \hbox (5.9958pt too wide) in paragraph at lines 144--145
+Overfull \hbox (5.9958pt too wide) in paragraph at lines 148--149
 []\OT1/cmr/m/n/10 Instead, expectation-maximization is a com-mon re-course: al-
 ter-nate be-tween cal-cu-lat-ing ex-pected complete-
  []
 
-[3] [4]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[5]
-Overfull \hbox (20.73753pt too wide) in paragraph at lines 217--217
+[3] [4] [5] [6]
+Overfull \hbox (27.62878pt too wide) in paragraph at lines 224--224
 [] 
  []
 
-[6] <wilkinson_fig3_biv.png, id=40, 615.29875pt x 252.945pt>
+<wilkinson_fig3_biv.png, id=39, 615.29875pt x 252.945pt>
 File: wilkinson_fig3_biv.png Graphic file (type png)
 
 <use wilkinson_fig3_biv.png>
-Package pdftex.def Info: wilkinson_fig3_biv.png used on input line 231.
+Package pdftex.def Info: wilkinson_fig3_biv.png used on input line 238.
 (pdftex.def)             Requested size: 289.08717pt x 144.54295pt.
 
-<SigD_trial_small_bw_may27.png, id=41, 513.92pt x 513.92pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<SigD_trial_small_bw_may27.png, id=40, 513.92pt x 513.92pt>
 File: SigD_trial_small_bw_may27.png Graphic file (type png)
 
 <use SigD_trial_small_bw_may27.png>
-Package pdftex.def Info: SigD_trial_small_bw_may27.png used on input line 248.
-(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
+Package pdftex.def Info: SigD_trial_small_bw_may27.png used on input line 249.
+(pdftex.def)             Requested size: 144.53964pt x 144.53964pt.
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[7 <./wilkinson_fig3_biv.png>]
-<SigD_trial_large_bw_may_29.png, id=46, 513.92pt x 513.92pt>
+<SigD_trial_large_bw_may_29.png, id=41, 513.92pt x 513.92pt>
 File: SigD_trial_large_bw_may_29.png Graphic file (type png)
 
 <use SigD_trial_large_bw_may_29.png>
-Package pdftex.def Info: SigD_trial_large_bw_may_29.png used on input line 270.
+Package pdftex.def Info: SigD_trial_large_bw_may_29.png used on input line 250.
 
-(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
+(pdftex.def)             Requested size: 144.53964pt x 144.53964pt.
 
+<june8_silverman_over_ten.png, id=42, 513.92pt x 513.92pt>
+File: june8_silverman_over_ten.png Graphic file (type png)
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-<simple_million_stagewise_plots/dist0_contour_decay_prod.png, id=47, 513.92pt x
- 513.92pt>
-File: simple_million_stagewise_plots/dist0_contour_decay_prod.png Graphic file 
-(type png)
- <use simple_million_stagewise_plots/dist0_contour_decay_prod.png>
-Package pdftex.def Info: simple_million_stagewise_plots/dist0_contour_decay_pro
-d.png used on input line 281.
-(pdftex.def)             Requested size: 72.26982pt x 72.26982pt.
-
-<simple_million_stagewise_plots/dist1_contour_decay_prod.png, id=48, 513.92pt x
- 513.92pt>
-File: simple_million_stagewise_plots/dist1_contour_decay_prod.png Graphic file 
-(type png)
- <use simple_million_stagewise_plots/dist1_contour_decay_prod.png>
-Package pdftex.def Info: simple_million_stagewise_plots/dist1_contour_decay_pro
-d.png used on input line 282.
-(pdftex.def)             Requested size: 72.26982pt x 72.26982pt.
-
-<simple_million_stagewise_plots/dist2_contour_decay_prod.png, id=49, 513.92pt x
- 513.92pt>
-File: simple_million_stagewise_plots/dist2_contour_decay_prod.png Graphic file 
-(type png)
- <use simple_million_stagewise_plots/dist2_contour_decay_prod.png>
-Package pdftex.def Info: simple_million_stagewise_plots/dist2_contour_decay_pro
-d.png used on input line 283.
-(pdftex.def)             Requested size: 72.26982pt x 72.26982pt.
-
-<simple_million_stagewise_plots/dist3_contour_decay_prod.png, id=50, 513.92pt x
- 513.92pt>
-File: simple_million_stagewise_plots/dist3_contour_decay_prod.png Graphic file 
-(type png)
- <use simple_million_stagewise_plots/dist3_contour_decay_prod.png>
-Package pdftex.def Info: simple_million_stagewise_plots/dist3_contour_decay_pro
-d.png used on input line 284.
-(pdftex.def)             Requested size: 72.26982pt x 72.26982pt.
-
-<simple_million_stagewise_plots/dist4_contour_decay_prod.png, id=51, 513.92pt x
- 513.92pt>
-File: simple_million_stagewise_plots/dist4_contour_decay_prod.png Graphic file 
-(type png)
- <use simple_million_stagewise_plots/dist4_contour_decay_prod.png>
-Package pdftex.def Info: simple_million_stagewise_plots/dist4_contour_decay_pro
-d.png used on input line 285.
-(pdftex.def)             Requested size: 72.26982pt x 72.26982pt.
-
-<simple_million_stagewise_plots/dist23_contour_decay_prod.png, id=52, 513.92pt 
-x 513.92pt>
-File: simple_million_stagewise_plots/dist23_contour_decay_prod.png Graphic file
- (type png)
- <use simple_million_stagewise_plots/dist23_contour_decay_prod.png>
-Package pdftex.def Info: simple_million_stagewise_plots/dist23_contour_decay_pr
-od.png used on input line 286.
-(pdftex.def)             Requested size: 72.26982pt x 72.26982pt.
+<use june8_silverman_over_ten.png>
+Package pdftex.def Info: june8_silverman_over_ten.png used on input line 251.
+(pdftex.def)             Requested size: 144.53964pt x 144.53964pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[8 <./SigD_trial_small_bw_may27.png>]
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 297.
+[7] <easy_test/dist0_contour_decay_prod.png, id=48, 513.92pt x 513.92pt>
+File: easy_test/dist0_contour_decay_prod.png Graphic file (type png)
+
+<use easy_test/dist0_contour_decay_prod.png>
+Package pdftex.def Info: easy_test/dist0_contour_decay_prod.png used on input l
+ine 263.
+(pdftex.def)             Requested size: 144.53964pt x 144.53964pt.
+
+<easy_test/dist1_contour_decay_prod.png, id=49, 513.92pt x 513.92pt>
+File: easy_test/dist1_contour_decay_prod.png Graphic file (type png)
+
+<use easy_test/dist1_contour_decay_prod.png>
+Package pdftex.def Info: easy_test/dist1_contour_decay_prod.png used on input l
+ine 264.
+(pdftex.def)             Requested size: 144.53964pt x 144.53964pt.
+
+<easy_test/dist2_contour_decay_prod.png, id=50, 513.92pt x 513.92pt>
+File: easy_test/dist2_contour_decay_prod.png Graphic file (type png)
+
+<use easy_test/dist2_contour_decay_prod.png>
+Package pdftex.def Info: easy_test/dist2_contour_decay_prod.png used on input l
+ine 265.
+(pdftex.def)             Requested size: 144.53964pt x 144.53964pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[8 <./wilkinson_fig3_biv.png> <./SigD_trial_small_bw_may27.png> <./SigD_trial_l
+arge_bw_may_29.png> <./june8_silverman_over_ten.png>]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 295.
+
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 295.
+ [9 <./easy_test/dist0_contour_decay_prod.png> <./easy_test/dist1_contour_decay
+_prod.png> <./easy_test/dist2_contour_decay_prod.png>]
+<geweke_qq/obs.png, id=57, 513.92pt x 513.92pt>
+File: geweke_qq/obs.png Graphic file (type png)
+ <use geweke_qq/obs.png>
+Package pdftex.def Info: geweke_qq/obs.png used on input line 310.
+(pdftex.def)             Requested size: 144.53964pt x 144.53964pt.
+
+<geweke_qq/params.png, id=58, 513.92pt x 513.92pt>
+File: geweke_qq/params.png Graphic file (type png)
+ <use geweke_qq/params.png>
+Package pdftex.def Info: geweke_qq/params.png used on input line 311.
+(pdftex.def)             Requested size: 144.53964pt x 144.53964pt.
+
+<geweke_qq/state.png, id=59, 513.92pt x 513.92pt>
+File: geweke_qq/state.png Graphic file (type png)
+ <use geweke_qq/state.png>
+Package pdftex.def Info: geweke_qq/state.png used on input line 312.
+(pdftex.def)             Requested size: 144.53964pt x 144.53964pt.
+
+<gillespie_test.png, id=60, 513.92pt x 513.92pt>
+File: gillespie_test.png Graphic file (type png)
+ <use gillespie_test.png>
+Package pdftex.def Info: gillespie_test.png used on input line 321.
+(pdftex.def)             Requested size: 144.53964pt x 144.53964pt.
+
+<simulated_data_multiple_mols.png, id=61, 513.92pt x 513.92pt>
+File: simulated_data_multiple_mols.png Graphic file (type png)
+
+<use simulated_data_multiple_mols.png>
+Package pdftex.def Info: simulated_data_multiple_mols.png used on input line 32
+2.
+(pdftex.def)             Requested size: 144.53964pt x 144.53964pt.
+
+<W10_representative_run.png, id=62, 600.2425pt x 290.08376pt>
+File: W10_representative_run.png Graphic file (type png)
+
+<use W10_representative_run.png>
+Package pdftex.def Info: W10_representative_run.png used on input line 323.
+(pdftex.def)             Requested size: 144.5374pt x 144.54134pt.
+ [10 <./geweke_qq/obs.png> <./geweke_qq/params.png> <./geweke_qq/state.png> <./
+gillespie_test.png> <./simulated_data_multiple_mols.png> <./W10_representative_
+run.png>]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 357.
 
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-) [9 <./SigD_trial_large_bw_may_29.png> <./simple_million_stagewise_plots/dist0
-_contour_decay_prod.png> <./simple_million_stagewise_plots/dist1_contour_decay_
-prod.png> <./simple_million_stagewise_plots/dist2_contour_decay_prod.png> <./si
-mple_million_stagewise_plots/dist3_contour_decay_prod.png> <./simple_million_st
-agewise_plots/dist4_contour_decay_prod.png> <./simple_million_stagewise_plots/d
-ist23_contour_decay_prod.png>] [10] [11] [12] (./kernfeld wilkinson summary.bbl
- [13]) [14]
+) [11] [12]
+[13] [14] (./kernfeld wilkinson summary.bbl [15]) [16] [17]
 (./kernfeld wilkinson summary.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5121 strings out of 493488
- 71888 string characters out of 3141326
- 159836 words of memory out of 3000000
- 8290 multiletter control sequences out of 15000+200000
+ 5171 strings out of 493488
+ 72188 string characters out of 3141326
+ 159903 words of memory out of 3000000
+ 8332 multiletter control sequences out of 15000+200000
  17265 words of font info for 65 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  38i,18n,32p,1834b,407s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -590,22 +608,25 @@ ive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texli
 ve/2012/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/local/te
 xlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
 live/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texli
-ve/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive
-/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2
-012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2012
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2012/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2012/texmf
--dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2012/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2012/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2012/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2012/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2012/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2012/texmf-dist/fonts/
-type1/urw/courier/ucrr8a.pfb>
-Output written on "kernfeld wilkinson summary.pdf" (14 pages, 604165 bytes).
+ve/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive
+/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2
+012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/201
+2/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2012/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2012/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2012/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2012/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2012/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2012/texmf-dist/font
+s/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2012/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2012/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2012/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/
+urw/courier/ucrr8a.pfb>
+Output written on "kernfeld wilkinson summary.pdf" (17 pages, 760746 bytes).
 PDF statistics:
- 140 PDF objects out of 1000 (max. 8388607)
- 94 compressed objects within 1 object stream
+ 166 PDF objects out of 1000 (max. 8388607)
+ 109 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 66 words of extra memory for PDF output out of 10000 (max. 10000000)
 
